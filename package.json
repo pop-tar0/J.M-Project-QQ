@@ -1,0 +1,37 @@
+{
+  "name": "tailwindcss-boilerplate",
+  "version": "1.0.0",
+  "description": "A simple Tailwind CSS boilerplate",
+  "scripts": {
+    "dev": "eslint 'src/**/*.js' && tailwindcss build tailwind.css -o public/css/tailwind.output.css && rollup -c",
+    "build": "eslint 'src/**/*.js' && cross-env NODE_ENV=production postcss tailwind.css -o public/css/tailwind.output.css && rollup -c",
+    "lint": "eslint 'src/**/*.js'"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "author": "Ian Lai <ian24257587@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer": "9.8.4",
+    "cssnano": "4.1.10",
+    "postcss-cli": "7.1.1",
+    "tailwindcss": "1.4.6"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/js": "^9.1.1",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@tailwindcss/custom-forms": "0.2.1",
+    "cross-env": "7.0.2",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "globals": "^15.0.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "rollup": "^4.16.4"
+  }
+}
