@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "A simple Tailwind CSS boilerplate",
   "scripts": {
-    "dev": "eslint 'src/**/*.js' && tailwindcss build tailwind.css -o public/css/tailwind.output.css && rollup -c",
-    "build": "eslint 'src/**/*.js' && cross-env NODE_ENV=production postcss tailwind.css -o public/css/tailwind.output.css && rollup -c",
-    "lint": "eslint 'src/**/*.js'"
+    "dev": "eslint src/**/*.js && tailwindcss build tailwind.css -o public/css/tailwind.output.css && rollup -c",
+    "build": "eslint src/**/*.js && cross-env NODE_ENV=production postcss tailwind.css -o public/css/tailwind.output.css && rollup -c",
+    "lint": "eslint src/**/*.js"
   },
   "pre-commit": [
     "lint"

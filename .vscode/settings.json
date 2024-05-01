@@ -10,5 +10,12 @@
     "eslint.enable": true,
     "eslint.options": {
         "overrideConfigFile": ".eslintrc.json"
-    }
+    },
+    "eslint.probe": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "html",
+    ]
 }
