@@ -2,7 +2,20 @@ body {
     background-color: #002C55 !important;
 }
 
-a {
+body div, body img, body a {
+    border-radius: 8px;
+}
+
+body button {
+    border-radius: 8px;
+    color: #fff;
+}
+
+body button:hover {
+    opacity: 0.8;
+}
+
+body a {
     text-decoration: none !important;
     color: black !important;
 }
@@ -38,6 +51,16 @@ header .container-fluid .row .col-md-4 input {
     outline: none;
 }
 
+header .container-fluid .row .col-md-4 button {
+    border-radius: 999px;
+    height: 35px;
+    width: 60px;
+    background-color: #002C55;
+    position: absolute;
+    top: 22.5px;
+    right: 38.6%; 
+}
+
 header .container-fluid .row .col-md-4 .round-icon {
     height: 50px;
     width: 50px;
@@ -48,7 +71,7 @@ header .container-fluid .row .col-md-4 .round-icon {
 }
 
 header .container-fluid .row .col-md-4 .round-icon:hover {
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 header .container-fluid .row .col-md-4 .round-icon img {
@@ -65,9 +88,77 @@ article {
     position: absolute;
     background-color: #fff;
     width: 64%;
-    border-radius: 8px;
     top: 95px;
     bottom: 2%;
+    border-radius: 8px;
+    overflow: scroll;
+}
+
+article .post-block {
+    background-color: #f5f5f5;
+    height: 200px;
+    width: 98%;
+    margin-top: 1%;
+    border-radius: 8px;
+}
+
+article .post-block .row .col-md-2 .profile-photo {
+    height: 94px;
+}
+
+article .post-block .row .col-md-2 .profile-photo img {
+    height: 80px;
+    width: 80px;
+    margin-top: 8px;
+}
+
+article .post-block .row .btn-bar {
+    height: 100px;
+    width: 80px;
+}
+
+article .post-block .row .btn-bar button {
+    width: 100%;
+    height: 30px;
+    background-color: #002C55;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+article .post-block .row textarea {
+    margin-top: 7px;
+    margin-right: 10px;
+    width: calc(100% - 40px);
+    height: calc(100% - 7px);
+    resize: none;
+    border: none;
+}
+
+article .post-block .row label {
+    margin: 2px 0 0 5px;
+    color: #a7a7a7;
+}
+
+article .post-block .row .post-btn {
+    position: absolute;
+    width: 10.5%;
+    height: 30px;
+    background-color: #002C55;
+    bottom: 6px;
+    right: 60px;
+}
+
+article .post {
+    background-color: #f5f5f5;
+    height: 300px;
+    width: 98%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*隱藏scrollbar*/
+article::-webkit-scrollbar {
+    display: none;
 }
 
 aside {
@@ -76,7 +167,6 @@ aside {
     position: fixed;
     width: 33%;
     height: 500px;
-    border-radius: 8px;
     right: 1%;
 }
 
@@ -95,7 +185,6 @@ aside p {
 .side-bar {
     background-color: #fff;
     height: 80px;
-    border-radius: 8px;
     display: block;
     transition: height 0.5s, line-height 0.5s;
     transition-delay: 0.08s;

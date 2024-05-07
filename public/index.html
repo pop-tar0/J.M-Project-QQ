@@ -15,12 +15,13 @@
     <header>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-4" style="border-radius: 0 0 0 8px; justify-content: start;">
+          <div class="col-md-4 justify-content-start" style="border-radius: 0 0 0 8px;">
             <div style="background-color: white; width: 140px; height: 60px; margin-top: auto; margin-bottom: auto; margin-left: 50px; text-align: center; line-height: 60px;">LOGO</div>
           </div>
-          <div class="col-md-4" style="justify-content: center;">
+          <form class="col-md-4 justify-content-center rounded-0">
             <input type="text" class="col-md-9" placeholder="SEARCH">
-          </div>
+            <button type="submit">搜</button>
+          </form>
           <div class="col-md-4" style="border-radius: 0 0 8px 0; justify-content: center;">
             <a href="javascript: void(0)" class="round-icon">
               <img src="assets/img/profile-photo.png" alt="">
@@ -37,6 +38,30 @@
     </header>
     <main>
       <article>
+        <form class="container post-block">
+          <div class="row">
+            <div class="col-md-2 d-flex flex-column">
+              <div class="profile-photo d-flex justify-content-center">
+                <img src="assets/img/profile-photo.png" alt="">
+              </div>
+              <div class="d-flex justify-content-center ">
+                <div class="btn-bar d-flex flex-column justify-content-around">
+                  <button>圖片</button>
+                  <button>地點</button>  
+                  <button>心情</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10 form-floating">
+              <textarea class="form-control" placeholder="" id="post-block-textarea"></textarea>
+              <label for="post-block-textarea">SAY SOMETHINGGGGGG☀️</label>
+              <button class="post-btn" type="submit">傳送</button>
+            </div>
+          </div>
+        </form>
+        <div class="container post"></div>
+        <div class="container post"></div>
+
       </article>
       <aside>
         <a href="javascript: void(0)" class="side-bar explore-bar">EXPLORE</a>
