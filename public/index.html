@@ -28,11 +28,11 @@
           </form>
           <div class="col-md-4" style="border-radius: 0 0 8px 0; justify-content: center;">
             <!--個人資料按鈕-->
-            <a href="javascript:;" class="round-icon">
+            <a href="javascript:;" class="round-icon overflow-hidden">
               <img src="assets/img/profile-photo.png" alt="">
             </a>
             <!--通知按鈕-->
-            <a href="javascript:;" class="round-icon text-center">
+            <a href="javascript:;" class="round-icon overflow-hidden text-center">
               <i class="far fa-bell"></i>
             </a>
           </div>
@@ -40,7 +40,7 @@
       </div>
     </header>
     <main>
-      <article>
+      <article class="overflow-auto">
         <form class="container post-panel">
           <div class="row">
             <div class="col-md-2 d-flex flex-column">
@@ -76,7 +76,7 @@
         <div class="container post">
           <div class="row">
             <div class="col-md-2 d-flex flex-column">
-              <a href="javascript:;" class="poster-photo">
+              <a href="javascript:;" class="poster-photo overflow-hidden">
                 <img src="assets/img/poster1-photo.png" alt="Error圖片錯誤">
               </a>
               <a href="javascript:;" class="poster-name text-center">@pop.dokyun_el</a>
@@ -110,11 +110,52 @@
           </div>
         </div>
       </article>
-      <aside>
-        <a href="javascript: void(0)" class="side-bar explore-bar">EXPLORE</a>
-        <a href="javascript: void(0)" class="side-bar reels-bar">REELS</a>
-        <a href="javascript: void(0)" class="side-bar games-bar">GAMES</a>
-        <p>SocialScape © pop.tar0 2024 - J.M Project Implimentation 666</p>
+      <aside class="text-center">
+        <ul>
+          <li class="side-bar explore-bar overflow-hidden">
+            <p class="bar-name">EXPLORE</p>
+            <ul>
+              <li>
+                <a class="explore-item" href="javascript:;">EXPLORE-1</a>
+              </li>
+              <li>
+                <a class="explore-item" href="javascript:;">EXPLORE-2</a>
+              </li>
+              <li>
+                <a class="explore-item" href="javascript:;">EXPLORE-3</a>
+              </li>
+            </ul>
+          </li>
+          <li class="side-bar reels-bar overflow-hidden">
+            <p class="bar-name">REELS</p>
+            <ul>
+              <li>
+                <a class="explore-item" href="javascript:;">REELS-1</a>
+              </li>
+              <li>
+                <a class="explore-item" href="javascript:;">REELS-2</a>
+              </li>
+              <li>
+                <a class="explore-item" href="javascript:;">REELS-3</a>
+              </li>
+            </ul>
+          </li>
+          <li class="side-bar games-bar overflow-hidden">
+            <p class="bar-name">GAMES</p>
+            <ul>
+              <li>
+                <a class="explore-item" href="javascript:;">GAMES-1</a>
+              </li>
+              <li>
+                <a class="explore-item" href="javascript:;">GAMES-2</a>
+              </li>
+              <li>
+                <a class="explore-item" href="javascript:;">GAMES-3</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p class="site-information position-fixed">SocialScape © pop.tar0 2024 - J.M Project Implimentation 666</p>
       </aside>
     </main>
     
