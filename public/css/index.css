@@ -101,6 +101,13 @@ header .container-fluid .row .col-md-4 .round-icon img {
     width: 100%;
 }
 
+header .container-fluid .row .col-md-4 .round-icon i {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 50px;
+    color: var(--navy-blue);
+}
+
 main {
     display: flex;
     padding: calc(80px + 1%) 1% 1% ;
@@ -215,7 +222,7 @@ article .post .row .post-content {
     background-color: white;
     margin: 7px 0 50px 0;
     width: calc(100% - 40px);
-    height: calc(100% - 25px);
+    height: calc(100% - 20px);
     padding: 6px 6px 12px 12px;
     position: relative;
 }
@@ -251,6 +258,7 @@ article .post .row .post-content .feedback-panel .interaction-bar {
 article .post .row .post-content .feedback-panel .interaction-bar button {
     background-color: var(--gray);
     width: 80px;
+    height: 30px;
 }
 
 aside {
