@@ -230,6 +230,12 @@ article::-webkit-scrollbar {
     display: none;
 }
 
+article .post .row .post-content .likes-icon {
+    width: 20px;
+    padding-top: 4px;
+    color: var(--navy-blue);
+}
+
 article .post .row .post-content .likes-quantity {
     width: 100px;
     letter-spacing: 2px;
