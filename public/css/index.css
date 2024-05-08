@@ -308,7 +308,7 @@ aside ul .side-bar ul li .explore-item {
     width: 100%;
     margin-top: 10px;
     line-height: 40px;
-}
+} 
 
 aside ul .side-bar ul li .explore-item:hover {
     background-color: var(--light-gray);
