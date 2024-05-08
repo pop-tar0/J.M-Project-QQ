@@ -76,11 +76,11 @@ header .container-fluid .row .col-md-4 input {
 header .container-fluid .row .col-md-4 button {
     border-radius: 999px;
     height: 35px;
-    width: 60px;
+    width: 35px;
     background-color: var(--navy-blue);
     position: absolute;
     top: 22.5px;
-    right: 38.6%; 
+    right: 38.5%; 
 }
 
 header .container-fluid .row .col-md-4 .round-icon {
@@ -89,7 +89,6 @@ header .container-fluid .row .col-md-4 .round-icon {
     background-color: white;
     border-radius: 22px;
     margin: auto 10px auto 10px;
-    overflow: hidden;
 }
 
 header .container-fluid .row .col-md-4 .round-icon:hover {
@@ -120,14 +119,14 @@ article {
     top: 95px;
     max-height: calc(98% - 95px);
     border-radius: 8px;
-    overflow: auto;
 }
 
 article .post-panel {
     background-color: var(--light-gray);
     height: 200px;
     width: 98%;
-    margin-top: 1%;
+    margin: 1%;
+    margin-bottom: 1%;
     border-radius: 8px;
 }
 
@@ -196,7 +195,6 @@ article .post .row .poster-photo {
     width: 80px;
     background-color: white;
     margin: 7px auto 0 auto;
-    overflow: hidden;
 }
 
 article .post .row .poster-photo:hover {
@@ -262,38 +260,63 @@ article .post .row .post-content .feedback-panel .interaction-bar button {
 }
 
 aside {
-    display: flex;
-    flex-direction: column;
     position: fixed;
-    width: 33%;
-    height: 500px;
     right: 1%;
+    top: 95px;
+    height: auto;
+    width: 33%;
 }
 
-aside a {
-    font-weight: 900;
-    font-size: 1.3em;
+aside ul {
+    padding-left: 0;
 }
 
-aside p {
-    color: white;
-    position: fixed;
-    bottom: 0;
-    font-weight: 100;
-}
-
-.side-bar {
+aside ul .side-bar {
     background-color: white;
     height: 80px;
-    display: block;
     transition: height 0.5s, line-height 0.5s;
     transition-delay: 0.08s;
     margin-bottom: 16px;
-    text-align: center;
-    line-height: 80px;
+    border-radius: 8px;
 }
 
-.side-bar:hover {
-    height: 243px;
-    line-height: 243px;
+aside ul .side-bar {
+    font-weight: 900;
+    font-size: 1.3em;
+
+}
+
+aside ul .side-bar:hover {
+    height: 242px;
+}
+
+aside ul .side-bar .bar-name {
+    line-height: 80px;
+    margin-bottom: 0;
+}
+
+aside ul .side-bar ul {
+    border-top: 3px solid var(--light-gray);
+    width: 94%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+aside ul .side-bar ul li .explore-item {
+    display: inline-block;
+    height: 40px;
+    width: 100%;
+    margin-top: 10px;
+    line-height: 40px;
+} 
+
+aside ul .side-bar ul li .explore-item:hover {
+    background-color: var(--light-gray);
+}
+
+aside .site-information {
+    color: white;
+    bottom: 0;
+    font-weight: 100;
+    letter-spacing: 1px;
 }
