@@ -1,14 +1,36 @@
-body {
-    background-color: #002C55 !important;
+:root {
+    --light-gray: #f5f5f5;
+    --gray: #bebebe;
+    --sky-blue: #d1e8f0;
+    --navy-blue: #002C55;
 }
 
-body div, body img, body a {
+body {
+    background-color: var(--navy-blue) !important;
+}
+
+body div, body img {
     border-radius: 8px;
+}
+
+body a {
+    border-radius: 8px;
+}
+
+body textarea {
+    line-height: 30px;
+    letter-spacing: 2px;
+}
+
+body p {
+    line-height: 30px;
+    letter-spacing: 2px;
+    white-space: pre-line
 }
 
 body button {
     border-radius: 8px;
-    color: #fff;
+    color: white;
 }
 
 body button:hover {
@@ -17,7 +39,7 @@ body button:hover {
 
 body a {
     text-decoration: none !important;
-    color: black !important;
+    color: black;
 }
 
 header {
@@ -25,7 +47,7 @@ header {
     width: 98%;
     position: fixed;
     left: 1%;
-    background-color: #002C55;
+    background-color: var(--navy-blue);
 }
 
 header .container-fluid {
@@ -37,7 +59,7 @@ header .container-fluid .row {
 }
 
 header .container-fluid .row .col-md-4 {
-    background-color: #B7D2DD;
+    background-color: var(--sky-blue);
     display: flex;
     
 }
@@ -55,7 +77,7 @@ header .container-fluid .row .col-md-4 button {
     border-radius: 999px;
     height: 35px;
     width: 60px;
-    background-color: #002C55;
+    background-color: var(--navy-blue);
     position: absolute;
     top: 22.5px;
     right: 38.6%; 
@@ -64,7 +86,7 @@ header .container-fluid .row .col-md-4 button {
 header .container-fluid .row .col-md-4 .round-icon {
     height: 50px;
     width: 50px;
-    background-color: #fff;
+    background-color: white;
     border-radius: 22px;
     margin: auto 10px auto 10px;
     overflow: hidden;
@@ -86,46 +108,46 @@ main {
 
 article {
     position: absolute;
-    background-color: #fff;
+    background-color: white;
     width: 64%;
     top: 95px;
-    bottom: 2%;
+    max-height: calc(98% - 95px);
     border-radius: 8px;
-    overflow: scroll;
+    overflow: auto;
 }
 
-article .post-block {
-    background-color: #f5f5f5;
+article .post-panel {
+    background-color: var(--light-gray);
     height: 200px;
     width: 98%;
     margin-top: 1%;
     border-radius: 8px;
 }
 
-article .post-block .row .col-md-2 .profile-photo {
+article .post-panel .row .col-md-2 .profile-photo {
     height: 94px;
 }
 
-article .post-block .row .col-md-2 .profile-photo img {
+article .post-panel .row .col-md-2 .profile-photo img {
     height: 80px;
     width: 80px;
     margin-top: 8px;
 }
 
-article .post-block .row .btn-bar {
+article .post-panel .row .btn-bar {
     height: 100px;
     width: 80px;
 }
 
-article .post-block .row .btn-bar button {
+article .post-panel .row .btn-bar button {
     width: 100%;
     height: 30px;
-    background-color: #002C55;
+    background-color: var(--gray);
     margin-left: auto;
     margin-right: auto;
 }
 
-article .post-block .row textarea {
+article .post-panel .row textarea {
     margin-top: 7px;
     margin-right: 10px;
     width: calc(100% - 40px);
@@ -134,31 +156,101 @@ article .post-block .row textarea {
     border: none;
 }
 
-article .post-block .row label {
+article .post-panel .row label {
     margin: 2px 0 0 5px;
     color: #a7a7a7;
+    letter-spacing: 2px;
 }
 
-article .post-block .row .post-btn {
+article .post-panel .row .post-btn {
     position: absolute;
     width: 10.5%;
     height: 30px;
-    background-color: #002C55;
+    background-color: var(--navy-blue);
     bottom: 6px;
     right: 60px;
 }
 
 article .post {
-    background-color: #f5f5f5;
-    height: 300px;
+    background-color: var(--light-gray);
+    height: auto;
     width: 98%;
     margin-top: 10px;
     margin-bottom: 10px;
+    
+}
+
+article .post .row {
+    height: 100%;
+}
+
+article .post .row .poster-photo {
+    height: 80px;
+    width: 80px;
+    background-color: white;
+    margin: 7px auto 0 auto;
+    overflow: hidden;
+}
+
+article .post .row .poster-photo:hover {
+    opacity: 1;
+}
+
+article .post .row .poster-name {
+    color: white;
+    font-size: 0.5em;
+    margin: 5px auto 0 auto;
+    background-color: var(--gray);
+    width: 80px;
+    height: 20px;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+article .post .row .poster-name:hover {
+    opacity: 0.8;
+}
+
+article .post .row .post-content {
+    background-color: white;
+    margin: 7px 0 50px 0;
+    width: calc(100% - 40px);
+    height: calc(100% - 25px);
+    padding: 6px 6px 12px 12px;
+    position: relative;
 }
 
 /*隱藏scrollbar*/
 article::-webkit-scrollbar {
     display: none;
+}
+
+article .post .row .post-content .likes-quantity {
+    width: 100px;
+    letter-spacing: 2px;
+}
+
+article .post .row .post-content p {
+    word-wrap: break-word;
+}
+
+article .post .row .post-content img {
+    border-radius: 0;
+}
+
+article .post .row .post-content .feedback-panel {
+    position: absolute;
+    width: 96.5%;
+    bottom: 10px;
+}
+
+article .post .row .post-content .feedback-panel .interaction-bar {
+    width: 40%;
+}
+
+article .post .row .post-content .feedback-panel .interaction-bar button {
+    background-color: var(--gray);
+    width: 80px;
 }
 
 aside {
@@ -176,14 +268,14 @@ aside a {
 }
 
 aside p {
-    color: #fff;
+    color: white;
     position: fixed;
     bottom: 0;
     font-weight: 100;
 }
 
 .side-bar {
-    background-color: #fff;
+    background-color: white;
     height: 80px;
     display: block;
     transition: height 0.5s, line-height 0.5s;
