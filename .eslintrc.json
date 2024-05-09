@@ -10,6 +10,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "indent": ["error", 4] // 將縮進設定為四個空格
   }
 }

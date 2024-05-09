@@ -1,3 +1,3 @@
-// export const someUtils = () => 'Build some util functions here';
+export const someUtils = () => '';
 
-// export default {};
+export default {};
