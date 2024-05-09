@@ -3,6 +3,8 @@
     --gray: #bebebe;
     --sky-blue: #d1e8f0;
     --navy-blue: #002C55;
+
+    --rounded: 999px;
 }
 
 body {
@@ -68,13 +70,13 @@ header .container-fluid .row .col-md-4 input {
     height: 45px;
     margin-top: auto;
     margin-bottom: auto;
-    border-radius: 999px;
+    border-radius: var(--rounded);
     padding-left: 20px;
     outline: none;
 }
 
 header .container-fluid .row .col-md-4 button {
-    border-radius: 999px;
+    border-radius: var(--rounded);
     height: 35px;
     width: 35px;
     background-color: var(--navy-blue);
@@ -198,18 +200,41 @@ article .post-panel .row .post-container .post-btn {
 }
 
 article .post-panel .row .post-container .selectedImage {
-    width: 150px;
     margin-top: 10px;
     border-radius: 0;
-    display: none;
+    width: calc(100% - 40px);
 }
 
-article .post-panel .row .post-container .selectedImage img {
-    margin: 0 5px 0 5px;
+article .post-panel .row .post-container .selectedImage .image-container {
+    position: relative;
+    margin: 0 5px 10px 5px;
 }
 
-article .post-panel .row .post-container .selectedImage img:first-of-type {
+article .post-panel .row .post-container .selectedImage .image-container:first-of-type {
     margin-left: 0;
+}
+
+article .post-panel .row .post-container .selectedImage .image-container img {
+    max-height: 200px;
+}
+
+article .post-panel .row .post-container .selectedImage .image-container .close-btn {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background-color: var(--gray);
+    top: -5px;
+    right: -5px;
+    border-radius: var(--rounded);
+    font-size: 12px;
+    text-align: center;
+    line-height: 15px;
+    cursor: pointer;
+    user-select: none;
+}
+
+article .post-panel .row .post-container .selectedImage .image-container .close-btn:active {
+    opacity: 0.8;
 }
 
 article .post {
