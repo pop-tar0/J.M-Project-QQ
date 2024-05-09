@@ -50,9 +50,10 @@
               <div class="d-flex justify-content-center ">
                 <div class="btn-bar d-flex flex-column justify-content-around">
                   <!--圖片按鈕-->
-                  <button>
+                  <label class="text-center" for="fileInput" id="chooseImage-btn">
                     <i class="fas fa-image"></i>
-                  </button>
+                  </label>
+                  <input id="fileInput" type="file" class="d-none" multiple accept="image/*">
                   <!--地點按鈕-->
                   <button>
                     <i class="fas fa-map-marker-alt"></i>
@@ -64,12 +65,13 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-10 form-floating">
+            <div class="col-md-10 form-floating post-container d-flex flex-column">
               <textarea class="form-control" placeholder="" id="post-panel-textarea"></textarea>
               <label for="post-panel-textarea">SAY SOMETHINGGGGGG☀️</label>
               <button class="post-btn" type="submit">
                 <i class="fas fa-paper-plane"></i>
               </button>
+              <div class="selectedImage d-flex" id="selectedImage"></div>
             </div>
           </div>
         </form>
