@@ -30,7 +30,7 @@ document.querySelector('#fileInput').addEventListener('change', (event) => {
 
                 document.querySelector('#selectedImage').appendChild(imageContainer);
 
-                document.querySelector('#selectedImage').style.marginBottom = '10px';
+                document.querySelector('#selectedImage').style.marginBottom = '0px';
                 document.querySelector('#selectedImage').style.display = 'block';
             }
         }
@@ -38,3 +38,9 @@ document.querySelector('#fileInput').addEventListener('change', (event) => {
 });
 
 // 取消已選擇的照片
+document.querySelector('#selectedImage').addEventListener('click', (event) => {
+    if (event.target.classList.contains('close-btn')) {
+        const imageContainer = event.target.parentNode;
+        imageContainer.parentNode.removeChild(imageContainer);
+    }
+});
