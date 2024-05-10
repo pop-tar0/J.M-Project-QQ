@@ -7,102 +7,95 @@
     --rounded: 999px;
 }
 
-body {
-    background-color: var(--navy-blue) !important;
-}
-
-body div, body img {
+div, img, a, article, label, .post-panel {
     border-radius: 8px;
 }
 
-body a {
-    border-radius: 8px;
+a:hover {
+    text-decoration: underline !important;
 }
 
-body textarea {
-    line-height: 30px;
-    letter-spacing: 2px;
+textarea {
+    line-height: 30px !important;
+    letter-spacing: 2px !important;
 }
 
-body p {
+p {
     line-height: 30px;
     letter-spacing: 2px;
     white-space: pre-line
 }
 
-body button {
-    border-radius: 8px;
+button {
+    border-radius: 8px !important;
     color: white;
 }
 
-body button:hover {
+button:hover {
     opacity: 0.8;
 }
 
-body a {
+a {
     text-decoration: none !important;
     color: black;
+}
+
+/* 方形 */
+.square {
+    border-radius: 0;
+}
+
+/* 左下圓角 */
+.rounded-bl {
+    border-radius: 0 0 0 8px;
+}
+
+/* 右下圓角 */
+.rounded-br {
+    border-radius: 0 0 8px 0;
+}
+
+.bg-blue {
+    background-color: #002C55;
+}
+
+.round-icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 22px;
+    margin: auto 10px auto 10px;
+}
+
+.btn-hover:hover {
+    opacity: 0.8;
 }
 
 header {
     height: 95px;
     width: 98%;
-    position: fixed;
     left: 1%;
-    background-color: var(--navy-blue);
 }
 
-header .container-fluid {
-    height: 80px;
-}
 
-header .container-fluid .row {
-    height: 100%;
-}
-
-header .container-fluid .row .col-md-4 {
+.header-bar {
+    width: calc(100%/3) !important;
     background-color: var(--sky-blue);
-    display: flex;
-    
 }
 
-header .container-fluid .row .col-md-4 input {
+header .container-fluid .row .header-bar input {
     height: 45px;
-    margin-top: auto;
-    margin-bottom: auto;
-    border-radius: var(--rounded);
     padding-left: 20px;
-    outline: none;
 }
 
-header .container-fluid .row .col-md-4 button {
-    border-radius: var(--rounded);
+header .container-fluid .row .header-bar button {
     height: 35px;
     width: 35px;
-    background-color: var(--navy-blue);
-    position: absolute;
     top: 22.5px;
     right: 38.5%; 
+    border-radius: 999px !important;
 }
 
-header .container-fluid .row .col-md-4 .round-icon {
-    height: 50px;
-    width: 50px;
-    background-color: white;
-    border-radius: 22px;
-    margin: auto 10px auto 10px;
-}
-
-header .container-fluid .row .col-md-4 .round-icon:hover {
-    opacity: 0.8;
-}
-
-header .container-fluid .row .col-md-4 .round-icon img {
-    height: 100%;
-    width: 100%;
-}
-
-header .container-fluid .row .col-md-4 .round-icon i {
+header .container-fluid .row .header-bar .round-icon i {
     font-size: 25px;
     font-weight: bold;
     line-height: 50px;
@@ -110,104 +103,52 @@ header .container-fluid .row .col-md-4 .round-icon i {
 }
 
 main {
-    display: flex;
     padding: calc(80px + 1%) 1% 1% ;
 }
 
 article {
-    position: absolute;
-    background-color: white;
     width: 64%;
     top: 95px;
     max-height: calc(98% - 95px);
-    border-radius: 8px;
 }
 
 article .post-panel {
-    background-color: var(--light-gray);
-    height: auto;
     width: 98%;
     margin: 1%;
     margin-bottom: 1%;
-    border-radius: 8px;
 }
 
-article .post-panel .row .col-md-2 .profile-photo {
-    height: 94px;
-}
-
-article .post-panel .row .col-md-2 .profile-photo img {
-    height: 80px;
-    width: 80px;
-    margin-top: 8px;
+article .post-panel .row .post-action-column {
+    width: calc(100%/6);
 }
 
 article .post-panel .row .btn-bar {
-    height: 100px;
-    width: 80px;
-}
-
-article .post-panel .row .btn-bar button {
-    width: 100%;
-    height: 30px;
-    background-color: var(--gray);
-    margin-left: auto;
-    margin-right: auto;
-}
-
-article .post-panel .row .btn-bar label {
-    width: 100%;
-    height: 30px;
-    background-color: var(--gray);
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 8px;
-    line-height: 30px;
-    color: white;
-}
-
-article .post-panel .row .btn-bar label:hover {
-    cursor: pointer;
-    opacity: 0.8;
+    height: 120px;
 }
 
 article .post-panel .row .post-container {
-    height: auto ;
+    width: calc(100%*5/6);
 }
 
 article .post-panel .row .post-container textarea {
-    margin-top: 7px;
     margin-right: 10px;
     width: calc(100% - 40px);
     height: 200px;
-    resize: none;
-    border: none;
 }
 
 article .post-panel .row .post-container label {
     margin: 2px 0 0 5px;
-    color: #a7a7a7;
-    letter-spacing: 2px;
 }
 
 article .post-panel .row .post-container .post-btn {
-    position: absolute;
     width: 10.5%;
-    height: 30px;
-    background-color: var(--navy-blue);
     top: 168px;
     right: 60px;
 }
 
 article .post-panel .row .post-container .selectedImage {
     margin-top: 10px;
-    border-radius: 0;
     width: calc(100% - 40px);
-}
-
-article .post-panel .row .post-container .selectedImage .image-container {
-    position: relative;
-    margin: 0 5px 10px 5px;
 }
 
 article .post-panel .row .post-container .selectedImage .image-container:first-of-type {
@@ -219,16 +160,12 @@ article .post-panel .row .post-container .selectedImage .image-container img {
 }
 
 article .post-panel .row .post-container .selectedImage .image-container .close-btn {
-    position: absolute;
-    height: 15px;
-    width: 15px;
-    background-color: var(--gray);
+    line-height: 16px;
+    height: 16px;
+    width: 16px;
+    font-size: 12px;
     top: -5px;
     right: -5px;
-    border-radius: var(--rounded);
-    font-size: 12px;
-    text-align: center;
-    line-height: 15px;
     cursor: pointer;
     user-select: none;
 }
@@ -238,50 +175,25 @@ article .post-panel .row .post-container .selectedImage .image-container .close-
 }
 
 article .post {
-    background-color: var(--light-gray);
-    height: auto;
     width: 98%;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-article .post .row {
-    height: 100%;
+article .post .row .poster-information {
+    width: calc(100%/6);
 }
 
-article .post .row .poster-photo {
-    height: 80px;
-    width: 80px;
-    background-color: white;
-    margin: 7px auto 0 auto;
-}
-
-article .post .row .poster-photo:hover {
-    opacity: 1;
-}
-
-article .post .row .poster-name {
-    color: white;
+article .post .row .poster-information .poster-name {
     font-size: 0.5em;
-    margin: 5px auto 0 auto;
-    background-color: var(--gray);
-    width: 80px;
-    height: 20px;
-    line-height: 20px;
-    font-weight: bold;
 }
 
-article .post .row .poster-name:hover {
-    opacity: 0.8;
+article .post .row .post-content-panel {
+    width: calc(100%*5/6);
 }
 
-article .post .row .post-content {
-    background-color: white;
-    margin: 7px 0 10px 0;
+article .post .row .post-content-panel .post-content {
     width: calc(100% - 40px);
-    height: auto;
-    padding: 6px 6px 12px 12px;
-    position: relative;
 }
 
 /*隱藏scrollbar*/
@@ -289,98 +201,32 @@ article::-webkit-scrollbar {
     display: none;
 }
 
-article .post .row .post-content .likes-icon {
-    width: 20px;
-    padding-top: 4px;
+article .post .row .post-content-panel .post-content .likes-icon {
     color: var(--navy-blue);
 }
 
-article .post .row .post-content .likes-quantity {
-    width: 100px;
-    letter-spacing: 2px;
-}
-
-article .post .row .post-content p {
-    word-wrap: break-word;
-}
-
-article .post .row .post-content img {
-    border-radius: 0;
-}
-
-article .post .row .post-content .feedback-panel {
-    width: 96.5%;
-    margin-top: 10px;
-}
-
-article .post .row .post-content .feedback-panel .interaction-bar {
-    width: 40%;
-}
-
-article .post .row .post-content .feedback-panel .interaction-bar button {
-    background-color: var(--gray);
-    width: 80px;
-    height: 30px;
-}
-
 aside {
-    position: fixed;
     right: 1%;
     top: 95px;
-    height: auto;
-    width: 33%;
-}
-
-aside ul {
-    padding-left: 0;
 }
 
 aside ul .side-bar {
-    background-color: white;
-    height: 80px;
     transition: height 0.5s, line-height 0.5s;
     transition-delay: 0.08s;
-    margin-bottom: 16px;
     border-radius: 8px;
 }
 
-aside ul .side-bar {
-    font-weight: 900;
-    font-size: 1.3em;
-
-}
-
 aside ul .side-bar:hover {
-    height: 242px;
+    height: 236px;
 }
 
 aside ul .side-bar .bar-name {
     line-height: 80px;
-    margin-bottom: 0;
-}
-
-aside ul .side-bar ul {
-    border-top: 3px solid var(--light-gray);
-    width: 94%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 aside ul .side-bar ul li .explore-item {
-    display: inline-block;
-    height: 40px;
-    width: 100%;
-    margin-top: 10px;
     line-height: 40px;
 } 
-
-aside ul .side-bar ul li .explore-item:hover {
-    background-color: var(--light-gray);
-}
-
 aside .site-information {
-    color: white;
     bottom: 0;
-    font-weight: 100;
-    letter-spacing: 1px;
 }

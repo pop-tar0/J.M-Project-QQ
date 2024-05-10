@@ -22,11 +22,11 @@
                     img.src = URL.createObjectURL(file);
 
                     const closeBtn = document.createElement('div');
-                    closeBtn.classList.add('close-btn');
+                    closeBtn.classList.add('close-btn', 'absolute', 'bg-gray-300', 'rounded-full', 'text-center');
                     closeBtn.textContent = '✖️';
 
                     const imageContainer = document.createElement('div');
-                    imageContainer.classList.add('image-container');
+                    imageContainer.classList.add('image-container', 'relative', 'mt-0', 'mb-2', 'ml-1', 'mr-1');
 
                     imageContainer.appendChild(img);
                     imageContainer.appendChild(closeBtn);
