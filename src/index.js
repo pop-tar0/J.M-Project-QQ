@@ -5,6 +5,7 @@ document.body.innerHTML += someUtils();
 
 // 新增貼文區加入照片
 document.querySelector('#chooseImage-btn').addEventListener('click', (event) => {
+    console.log('a');
     event.preventDefault();
     document.querySelector('#fileInput').click();
 });
@@ -29,8 +30,6 @@ document.querySelector('#fileInput').addEventListener('change', (event) => {
                 imageContainer.appendChild(closeBtn);
 
                 document.querySelector('#selectedImage').appendChild(imageContainer);
-
-                document.querySelector('#selectedImage').style.marginBottom = '0px';
                 document.querySelector('#selectedImage').style.display = 'block';
             }
         }

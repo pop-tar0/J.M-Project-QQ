@@ -18,6 +18,8 @@ a:hover {
 textarea {
     line-height: 30px !important;
     letter-spacing: 2px !important;
+    resize: none;
+    border-radius: 8px;
 }
 
 p {
@@ -60,7 +62,7 @@ a {
 }
 
 .round-icon {
-    height: 50px;
+    height: 48px;
     width: 50px;
     border-radius: 22px;
     margin: auto 10px auto 10px;
@@ -91,7 +93,7 @@ header .container-fluid .row .header-bar button {
     height: 35px;
     width: 35px;
     top: 22.5px;
-    right: 38.5%; 
+    right: 37.9%; 
     border-radius: 999px !important;
 }
 
@@ -133,7 +135,7 @@ article .post-panel .row .post-container {
 article .post-panel .row .post-container textarea {
     margin-right: 10px;
     width: calc(100% - 40px);
-    height: 200px;
+    height: 209px;
 }
 
 article .post-panel .row .post-container label {
@@ -142,7 +144,7 @@ article .post-panel .row .post-container label {
 
 article .post-panel .row .post-container .post-btn {
     width: 10.5%;
-    top: 168px;
+    top: 185px;
     right: 60px;
 }
 
@@ -176,16 +178,18 @@ article .post-panel .row .post-container .selectedImage .image-container .close-
 
 article .post {
     width: 98%;
-    margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 article .post .row .poster-information {
     width: calc(100%/6);
 }
 
+article .post .row .poster-information .poster-photo {
+    height: 9.5%;
+}
+
 article .post .row .poster-information .poster-name {
-    font-size: 0.5em;
+    font-size: 10px;
 }
 
 article .post .row .post-content-panel {
