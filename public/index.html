@@ -11,78 +11,78 @@
     <title>Social Scape</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   </head>
-  <body class="bg-blue">
+  <body class="bg-navy-blue">
     <header class="fixed">
       <div class="container-fluid h-20">
         <div class="row h-100 flex">
-          <div class="header-bar rounded-bl justify-start flex mt-auto mb-auto h-20">
+          <div class="header-bar w-1/3 rounded-bl-lg justify-start flex mt-auto mb-auto h-20 bg-sky-blue">
             <div style="background-color: white; width: 140px; height: 60px; margin-top: auto; margin-bottom: auto; margin-left: 50px; text-align: center; line-height: 60px;">LOGO</div>
           </div>
-          <form class="header-bar justify-center square flex h-20">
-            <input type="text" class="mt-auto mb-auto rounded-full outline-none w-3/4" placeholder="SEARCH">
+          <form class="header-bar w-1/3 justify-center rounded-none flex h-20 bg-sky-blue">
+            <input type="text" class="mt-auto mb-auto rounded-full outline-none w-3/4 pl-5 h-10" placeholder="SEARCH">
             <!--搜尋按鈕-->
-            <button class="rounded-full bg-blue absolute" type="submit">
+            <button class="rounded-full bg-navy-blue text-white absolute hover:opacity-80 h-8 w-8" type="submit">
               <i class="fas fa-search"></i>
             </button>
           </form>
-          <div class="header-bar rounded-br justify-center flex h-20">
+          <div class="header-bar w-1/3 rounded-br-lg justify-center flex h-20 bg-sky-blue">
             <!--個人資料按鈕-->
-            <div class="round-icon btn-hover overflow-hidden" role="button">
+            <div class="round-icon btn-hover overflow-hidden hover:opacity-80 mt-auto mb-auto mr-2 rounded-xl" role="button">
               <img src="assets/img/profile-photo.png" class="w-full h-full" alt="">
             </div>
             <!--通知按鈕-->
-            <div class="round-icon btn-hover overflow-hidden text-center bg-white" role="button">
-              <i class="far fa-bell"></i>
+            <div class="round-icon btn-hover overflow-hidden text-center bg-white hover:opacity-80 mt-auto mb-auto ml-2 rounded-xl text-2xl" role="button">
+              <i class="fas fa-bell text-navy-blue"></i>
             </div>
           </div>
         </div>
       </div>
     </header>
     <main>
-      <article class="overflow-auto absolute bg-white w-">
-        <form class="container post-panel h-auto bg-gray-100">
+      <article class="overflow-auto absolute bg-white rounded-lg">
+        <form class="container post-panel h-auto bg-gray-100 rounded-lg">
           <div class="row flex">
             <div class="post-action-column flex flex-col">
               <div class="profile-image flex justify-center mt-2 ml-auto mr-auto w-7/12">
-                <img src="assets/img/profile-photo.png" class="h-100 w-full" alt="Error圖片錯誤">
+                <img src="assets/img/profile-photo.png" class="h-100 w-full rounded-lg" alt="Error圖片錯誤">
               </div>
               <div class="flex justify-center w-7/12 ml-auto mr-auto">
                 <div class="btn-bar flex flex-col justify-around mt-1 w-full">
                   <!--圖片按鈕-->
-                  <label class="text-center w-full bg-gray-300 btn-hover text-white h-8 leading-8 cursor-pointer" for="fileInput" id="chooseImage-btn">
+                  <label class="text-center w-full bg-gray-300 btn-hover text-white h-8 leading-8 cursor-pointer rounded-lg hover:opacity-80" for="fileInput" id="chooseImage-btn">
                     <i class="fas fa-image"></i>
                   </label>
                   <input id="fileInput" type="file" multiple accept="image/*" hidden>
                   <!--地點按鈕-->
-                  <button class="bg-gray-300 text-white h-8">
+                  <button class="bg-gray-300 text-white h-8 rounded-lg hover:opacity-80">
                     <i class="fas fa-map-marker-alt"></i>
                   </button>
                   <!--心情按鈕-->  
-                  <button class="bg-gray-300 text-white h-8">
+                  <button class="bg-gray-300 text-white h-8 rounded-lg hover:opacity-80">
                     <i class="fas fa-smile"></i>
                   </button>
                 </div>
               </div>
             </div>
             <div class="post-container flex flex-col h-auto">
-              <textarea class="fresize-none border-0 mt-2 p-4" placeholder="" id="post-panel-textarea"></textarea>
-              <button class="post-btn absolute bg-blue h-8" type="submit">
+              <textarea class="fresize-none border-0 mt-2 p-4 rounded-lg" placeholder="" id="post-panel-textarea"></textarea>
+              <button class="post-btn absolute bg-navy-blue text-white h-8 rounded-lg hover:opacity-80" type="submit">
                 <i class="fas fa-paper-plane"></i>
               </button>
-              <div class="selectedImage flex" id="selectedImage"></div>
+              <div class="selectedImage flex mt-2" id="selectedImage"></div>
             </div>
           </div>
         </form>
-        <div class="container post bg-gray-100 h-auto ml-auto mr-auto mt-2 mb-2">
+        <div class="container post bg-gray-100 h-auto ml-auto mr-auto mt-2 mb-2 rounded-lg">
           <div class="row flex">
             <div class="poster-information flex flex-col h-auto">
-              <a href="javascript:;" class="poster-photo overflow-hidden w-7/12 bg-white mt-2 mb-0 ml-auto mr-auto btn-hover">
-                <img src="assets/img/poster1-photo.png" class="w-full h-100" alt="Error圖片錯誤">
+              <a href="javascript:;" class="poster-photo w-7/12 mt-2 mb-0 ml-auto mr-auto btn-hover">
+                <img src="assets/img/poster1-photo.png" class="w-full h-full rounded-lg object-cover" alt="Error圖片錯誤">
               </a>
-              <a href="javascript:;" class="poster-name text-center text-white mt-2 mb-0 ml-auto mr-auto bg-gray-300 h-5 leading-5 font-bold btn-hover w-7/12 overflow-hidden">@pop.dokyun_el</a>
+              <a href="javascript:;" class="poster-name text-center text-white mt-2 mb-0 ml-auto mr-auto bg-gray-300 h-5 leading-5 font-bold btn-hover w-7/12 overflow-hidden rounded-lg hover:underline text-2xs">@pop.dokyun_el</a>
             </div>
-            <div class="post-content-panel">
-              <div class="post-content bg-white h-auto relative mt-2 mb-2 ml-0 mr-0 pt-2 pb-2 pl-3 pr-3">
+            <div class="post-content-panel rounded-lg">
+              <div class="post-content bg-white h-auto relative mt-2 mb-2 ml-0 mr-0 pt-2 pb-2 pl-3 pr-3 rounded-lg">
                 <p class="main-text break-words"
                 >super idol的笑容
                   都沒印何闐
@@ -90,20 +90,20 @@
                 <img src="assets/img/post-img1.png" class="border-0 w-full" alt="Error圖片錯誤">
                 <div class="feedback-panel flex justify-between mt-2 w-full">
                   <div class="flex mt-1">
-                    <i class="likes-icon fas fa-heart w-5 pt-1"></i>
-                    <a href="javascript:;" class="likes-quantity detail tracking-wide text-black">300</a>
+                    <i class="likes-icon fas fa-heart w-5 pt-1 text-navy-blue"></i>
+                    <a href="javascript:;" class="likes-quantity detail tracking-wide text-black hover:underline">300</a>
                   </div>
                   <div class="interaction-bar flex justify-between w-2/5">
                     <!--愛心按鈕-->
-                    <button class="like-btn bg-gray-300 w-20 h-8">
+                    <button class="like-btn bg-gray-300 text-white w-20 h-8 rounded-lg hover:opacity-80">
                       <i class="fas fa-heart"></i>
                     </button>
                     <!--留言按鈕-->
-                    <button class="comment-btn bg-gray-300 w-20 h-8">
+                    <button class="comment-btn bg-gray-300 text-white w-20 h-8 rounded-lg hover:opacity-80">
                       <i class="fas fa-comment"></i>                    
                     </button>
                     <!--分享按鈕-->
-                    <button class="share-btn bg-gray-300 w-20 h-8">
+                    <button class="share-btn bg-gray-300 text-white w-20 h-8 rounded-lg hover:opacity-80">
                       <i class="fas fa-share-alt"></i>
                     </button>
                   </div>
@@ -115,45 +115,45 @@
       </article>
       <aside class="text-center fixed h-auto w-1/3">
         <ul class="pl-1">
-          <li class="side-bar explore-bar overflow-hidden bg-white h-20 mb-4 font-black text-xl">
+          <li class="side-bar explore-bar overflow-hidden bg-white h-20 mb-4 font-black text-xl rounded-lg" role="button">
             <p class="bar-name mb-0 text-2xl">EXPLORE</p>
             <ul class="pl-0 border-t-4 border-gray-100 ml-2 mr-2">
               <li>
-                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 text-black" href="javascript:;">EXPLORE-1</a>
+                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 hover:underline text-black rounded-lg" href="javascript:;">EXPLORE-1</a>
               </li>
               <li>
-                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 text-black" href="javascript:;">EXPLORE-2</a>
+                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 hover:underline text-black rounded-lg" href="javascript:;">EXPLORE-2</a>
               </li>
               <li>
-                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 text-black" href="javascript:;">EXPLORE-3</a>
+                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 hover:underline text-black rounded-lg" href="javascript:;">EXPLORE-3</a>
               </li>
             </ul>
           </li>
-          <li class="side-bar reels-bar overflow-hidden bg-white h-20 mb-4 font-black text-xl">
+          <li class="side-bar reels-bar overflow-hidden bg-white h-20 mb-4 font-black text-xl rounded-lg" role="button">
             <p class="bar-name mb-0 text-2xl">REELS</p>
             <ul class="pl-0 border-t-4 border-gray-100 ml-2 mr-2">
               <li>
-                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 text-black" href="javascript:;">REELS-1</a>
+                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 hover:underline text-black rounded-lg" href="javascript:;">REELS-1</a>
               </li>
               <li>
-                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 text-black" href="javascript:;">REELS-2</a>
+                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 hover:underline text-black rounded-lg" href="javascript:;">REELS-2</a>
               </li>
               <li>
-                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 text-black" href="javascript:;">REELS-3</a>
+                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 hover:underline text-black rounded-lg" href="javascript:;">REELS-3</a>
               </li>
             </ul>
           </li>
-          <li class="side-bar games-bar overflow-hidden bg-white h-20 mb-4 font-black text-xl">
+          <li class="side-bar games-bar overflow-hidden bg-white h-20 mb-4 font-black text-xl rounded-lg" role="button">
             <p class="bar-name mb-0 text-2xl">GAMES</p>
             <ul class="pl-0 border-t-4 border-gray-100 ml-2 mr-2">
               <li>
-                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 text-black" href="javascript:;">GAMES-1</a>
+                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 hover:underline text-black rounded-lg" href="javascript:;">GAMES-1</a>
               </li>
               <li>
-                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 text-black" href="javascript:;">GAMES-2</a>
+                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 hover:underline text-black rounded-lg" href="javascript:;">GAMES-2</a>
               </li>
               <li>
-                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 text-black" href="javascript:;">GAMES-3</a>
+                <a class="explore-item inline-block h-10 w-full mt-2 hover:bg-gray-200 hover:underline text-black rounded-lg" href="javascript:;">GAMES-3</a>
               </li>
             </ul>
           </li>
@@ -161,6 +161,7 @@
         <p class="site-information fixed text-white font-hairline tracking-wider">SocialScape © pop.tar0 2024 - J.M Project Implimentation 666</p>
       </aside>
     </main>
+
   </body>
   <script src="./index.js"></script>
 </html>

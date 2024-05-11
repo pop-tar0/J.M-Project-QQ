@@ -5,7 +5,6 @@ document.body.innerHTML += someUtils();
 
 // 新增貼文區加入照片
 document.querySelector('#chooseImage-btn').addEventListener('click', (event) => {
-    console.log('a');
     event.preventDefault();
     document.querySelector('#fileInput').click();
 });
@@ -18,9 +17,10 @@ document.querySelector('#fileInput').addEventListener('change', (event) => {
             if (file.type.match('image.*')) {
                 const img = document.createElement('img');
                 img.src = URL.createObjectURL(file);
+                img.classList.add('rounded-lg');
 
                 const closeBtn = document.createElement('div');
-                closeBtn.classList.add('close-btn', 'absolute', 'bg-gray-300', 'rounded-full', 'text-center');
+                closeBtn.classList.add('close-btn', 'absolute', 'bg-gray-300', 'rounded-full', 'text-center', 'cursor-pointer', 'select-none');
                 closeBtn.textContent = '✖️';
 
                 const imageContainer = document.createElement('div');
