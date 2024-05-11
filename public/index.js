@@ -27,13 +27,12 @@
                     closeBtn.textContent = '✖️';
 
                     const imageContainer = document.createElement('div');
-                    imageContainer.classList.add('image-container', 'relative', 'mt-0', 'mb-2', 'ml-1', 'mr-1');
+                    imageContainer.classList.add('image-container', 'relative', 'mt-0', 'mb-2', 'ml-1', 'mr-2');
 
                     imageContainer.appendChild(img);
                     imageContainer.appendChild(closeBtn);
 
                     document.querySelector('#selectedImage').appendChild(imageContainer);
-                    document.querySelector('#selectedImage').style.display = 'block';
                 }
             }
         }
