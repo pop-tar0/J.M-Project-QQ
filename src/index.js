@@ -3,8 +3,8 @@ import { someUtils } from './another';
 document.body.innerHTML += '';
 document.body.innerHTML += someUtils();
 
-// 新增貼文區加入照片
-document.querySelector('#chooseImage-btn').addEventListener('click', (event) => {
+// Opens the file selection dialog when the user clicks the select image button
+document.querySelector('#select-image-btn').addEventListener('click', (event) => {
     event.preventDefault();
     document.querySelector('#fileInput').click();
 });
@@ -35,7 +35,7 @@ document.querySelector('#fileInput').addEventListener('change', (event) => {
     }
 });
 
-// 取消已選擇的照片
+// // Canceled the selected images
 document.querySelector('#selectedImage').addEventListener('click', (event) => {
     if (event.target.classList.contains('close-btn')) {
         const imageContainer = event.target.parentNode;
