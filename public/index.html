@@ -13,6 +13,8 @@
   </head>
   <body class="bg-navy-blue">
     <header class="fixed">
+      <!--Translucent background-->
+      <div class="bg-shadow justify-center fixed w-full h-full bg-black bg-opacity-30 top-0 left-0" hidden></div>
       <div class="container-fluid h-20">
         <div class="row h-100 flex">
           <div class="header-bar w-1/3 rounded-bl-lg justify-start flex mt-auto mb-auto h-20 bg-sky-blue">
@@ -43,18 +45,18 @@
         <form class="container post-panel h-auto bg-gray-100 rounded-lg">
           <div class="row flex">
             <div class="post-action-column flex flex-col">
-              <div class="profile-image flex justify-center mt-2 ml-auto mr-auto w-7/12">
+              <div class="profile-image flex justify-center mt-2 mx-auto w-7/12">
                 <img src="assets/img/profile-photo.png" class="h-100 w-full rounded-lg" alt="Error圖片錯誤">
               </div>
-              <div class="flex justify-center w-7/12 ml-auto mr-auto">
+              <div class="flex justify-center w-7/12 mx-auto">
                 <div class="btn-bar flex flex-col justify-around mt-1 w-full">
                   <!--圖片按鈕-->
-                  <label class="text-center w-full bg-gray-300 btn-hover text-white h-8 leading-8 cursor-pointer rounded-lg hover:opacity-80" for="fileInput" id="chooseImage-btn">
+                  <label class="text-center w-full bg-gray-300 btn-hover text-white h-8 leading-8 cursor-pointer rounded-lg hover:opacity-80" for="fileInput" id="select-image-btn">
                     <i class="fas fa-image"></i>
                   </label>
                   <input id="fileInput" type="file" multiple accept="image/*" hidden>
                   <!--地點按鈕-->
-                  <button class="bg-gray-300 text-white h-8 rounded-lg hover:opacity-80">
+                  <button class="bg-gray-300 text-white h-8 rounded-lg hover:opacity-80" id="select-location-btn">
                     <i class="fas fa-map-marker-alt"></i>
                   </button>
                   <!--心情按鈕-->  
@@ -73,13 +75,13 @@
             </div>
           </div>
         </form>
-        <div class="container post bg-gray-100 h-auto ml-auto mr-auto mt-2 mb-2 rounded-lg">
+        <div class="container post bg-gray-100 h-auto mx-auto mt-2 mb-2 rounded-lg">
           <div class="row flex">
             <div class="poster-information flex flex-col h-auto">
-              <a href="javascript:;" class="poster-photo w-7/12 mt-2 mb-0 ml-auto mr-auto btn-hover">
+              <a href="javascript:;" class="poster-photo w-7/12 mt-2 mb-0 mx-auto btn-hover">
                 <img src="assets/img/poster1-photo.png" class="w-full h-full rounded-lg object-cover" alt="Error圖片錯誤">
               </a>
-              <a href="javascript:;" class="poster-name text-center text-white mt-2 mb-0 ml-auto mr-auto bg-gray-300 h-5 leading-5 font-bold btn-hover w-7/12 overflow-hidden rounded-lg hover:underline text-2xs">@pop.dokyun_el</a>
+              <a href="javascript:;" class="poster-name text-center text-white mt-2 mb-0 mx-auto bg-gray-300 h-5 leading-5 font-bold btn-hover w-7/12 overflow-hidden rounded-lg hover:underline text-2xs">@pop.dokyun_el</a>
             </div>
             <div class="post-content-panel rounded-lg">
               <div class="post-content bg-white h-auto relative mt-2 mb-2 ml-0 mr-0 pt-2 pb-2 pl-3 pr-3 rounded-lg">
@@ -158,10 +160,68 @@
             </ul>
           </li>
         </ul>
-        <p class="site-information fixed text-white font-hairline tracking-wider">SocialScape © pop.tar0 2024 - J.M Project Implimentation 666</p>
+        <p class="site-information fixed text-white font-hairline tracking-wider bottom-0">SocialScape © pop.tar0 2024 - J.M Project Implimentation 666</p>
       </aside>
     </main>
-
+    <form class="select-location relative bg-white p-4 w-1/5 mx-auto rounded-lg" id="select-location">
+      <button class="close-btn absolute h-6 w-6 rounded-full bg-gray-300 text-black z-10 text-lg ">✖️</button>
+      <div class="input-bar flex justify-center mt-1 relative">
+        <input type="text" class="bg-gray-200 h-10 w-5/6 rounded-full pl-4">
+        <button type="submit" class="search-btn bg-navy-blue h-8 w-8 absolute rounded-full">
+          <i class="fas fa-search text-white"></i>
+        </button>
+      </div>
+      <ul class="slide absolute justify-start mx-auto flex flex-col overflow-y-scroll border-4 border-gray-200 rounded-lg p-2">
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+        <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
+          <button class="h-full w-full">111</button>
+        </li>
+      </ul>
+      <div class="next-bg-up h-10 bg-white absolute rounded-sm text-center rounded-t-sm" hidden>
+        <i class="fas fa-chevron-up next-toggle-up mt-6 text-3xl text-navy-blue cursor-pointer h-10 w-10 rounded-full"></i>
+      </div>
+      <div class="next-bg-down h-10 bg-white absolute rounded-sm text-center">
+        <i class="fas fa-chevron-down next-toggle-down mt-2 text-3xl text-navy-blue cursor-pointer h-10 w-10 rounded-full"></i>
+      </div>
+    </form>
   </body>
   <script src="./index.js"></script>
 </html>

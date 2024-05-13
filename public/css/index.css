@@ -4,6 +4,10 @@ textarea {
     resize: none;
 }
 
+button {
+    outline: none !important;
+}
+
 p {
     line-height: 30px;
     letter-spacing: 2px;
@@ -139,9 +143,83 @@ aside ul .side-bar .bar-name {
 
 aside ul .side-bar ul li .explore-item {
     line-height: 40px;
-} 
+}
 
-aside .site-information {
-    bottom: 0;
+.select-location {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    height: 400px;
+}
+
+.select-location .close-btn {
+    top: 7px;
+    right: 7px;
+}
+
+.select-location .close-btn:active {
+    opacity: 0.8;
+}
+
+.select-location .input-bar .search-btn {
+    top: 4px;
+    right: 10.2%;
+}
+
+.select-location ul {
+    height: 80%; 
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+}
+
+.select-location ul::-webkit-scrollbar {
+    display: none;
+}
+
+.select-location ul li {
+    min-height: 50px !important;
+}
+
+.select-location ul li:last-of-type {
+    margin-bottom: 0;
+}
+
+.select-location .next-bg-up {
+    top: 76px;
+    left: 12px;
+    right: 12px;
+    background: linear-gradient(to bottom, rgba(229, 231, 235), rgb(229, 231, 235, 0));
+}
+
+.select-location .next-bg-up .next-toggle-up {
+    transition: transform 0.2s linear;
+    line-height: 40px;
+}
+
+.select-location .next-bg-up .next-toggle-up:hover {
+    transform: scale(1.2);
+}
+
+.select-location .next-bg-up .next-toggle-up:active {
+    transform: scale(0.8);
+}
+
+.select-location .next-bg-down {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    background: linear-gradient(to top, rgba(229, 231, 235), rgb(229, 231, 235, 0));
+}
+
+.select-location .next-bg-down .next-toggle-down {
+    transition: transform 0.2s linear;
+    line-height: 40px;
+}
+
+.select-location .next-bg-down .next-toggle-down:hover {
+    transform: scale(1.2);
+}
+
+.select-location .next-bg-down .next-toggle-down:active {
+    transform: scale(0.8);
 }
 
