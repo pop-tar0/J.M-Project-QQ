@@ -9,6 +9,7 @@ module.exports = {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
             },
             opacity: {
+                30: '0.3',
                 80: '0.8',
             },
             borderRadius: {
