@@ -17,6 +17,7 @@
         let interval = initialInterval;
         const container = initialContainer;
 
+        // If scroll is not at edge, show white translucent background
         const isScrollAtEdge = () => {
             const nextBgUp = document.querySelector('.next-bg-up');
             nextBgUp.style.display = container.scrollTop <= 0 ? 'none' : 'block';
@@ -61,6 +62,7 @@
         document.addEventListener('mouseup', handleMouseUp);
     };
 
+    // Select Image
     // Opens the file selection dialog when the user clicks the select image button
     document.querySelector('#select-image-btn').addEventListener('click', (event) => {
         event.preventDefault();
@@ -101,6 +103,7 @@
         }
     });
 
+    // Selection Location
     // Open the location selection dialog
     document.querySelector('#select-location-btn').addEventListener('click', (event) => {
         showShadowBackground(event, '#select-location');

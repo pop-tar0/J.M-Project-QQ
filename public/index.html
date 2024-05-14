@@ -8,8 +8,9 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <title>Social Scape</title>
+    <title>Socope</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="assets/img/logo.png" type="image/png">
   </head>
   <body class="bg-navy-blue">
     <header class="fixed">
@@ -17,7 +18,10 @@
       <div class="container-fluid h-20">
         <div class="row h-100 flex">
           <div class="header-bar w-1/3 rounded-bl-lg justify-start flex mt-auto mb-auto h-20 bg-sky-blue">
-            <div style="background-color: white; width: 140px; height: 60px; margin-top: auto; margin-bottom: auto; margin-left: 50px; text-align: center; line-height: 60px;">LOGO</div>
+            <a href="#" class="flex ml-12">
+              <img src="assets/img/logo.png" class="h-12 my-auto" alt="圖片錯誤Error">
+              <img src="assets/img/logo-name.png" class="h-10 my-auto" alt="圖片錯誤Error">
+            </a>
           </div>
           <form class="header-bar w-1/3 justify-center rounded-none flex h-20 bg-sky-blue">
             <input type="text" class="mt-auto mb-auto rounded-full outline-none w-3/4 pl-5 h-10" placeholder="SEARCH">
@@ -177,7 +181,15 @@
       </div>
       <ul class="slide-content absolute justify-start mx-auto flex flex-col overflow-y-scroll border-4 border-gray-200 rounded-lg p-2">
         <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
-          <button class="h-full w-full">111</button>
+          <button class="location-btn h-full w-full text-gray-500 hover:text-gray-400">
+            <div class="location-content flex justify-between w-11/12 mx-auto">
+              <div>中正紀念堂</div>
+              <div class="flex justify-end">
+                <i class="fas fa-map-marker-alt my-auto text-xs"></i>
+                <div class="ml-1">5.1km</div>
+              </div>
+            </div>
+          </button>
         </li>
         <li class="w-full bg-gray-200 hover:bg-gray-100 rounded-md mb-2">
           <button class="h-full w-full">111</button>
