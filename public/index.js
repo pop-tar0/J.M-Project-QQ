@@ -1,10 +1,65 @@
 (function () {
     'use strict';
 
-    const someUtils = () => '';
+    // Open the translucent background
+    const showShadowBackground = (event, dialog) => {
+        event.preventDefault();
+        const bgShadow = document.querySelector('.bg-shadow');
+        bgShadow.style.display = 'block';
 
-    document.body.innerHTML += '';
-    document.body.innerHTML += someUtils();
+        bgShadow.addEventListener('click', () => {
+            bgShadow.style.display = 'none';
+            document.querySelector(dialog).style.display = 'none';
+        });
+    };
+
+    const handleScrollArrow = (initialInterval, initialContainer, toggle, hoverSpeed, holdSpeed) => {
+        let interval = initialInterval;
+        const container = initialContainer;
+
+        const isScrollAtEdge = () => {
+            const nextBgUp = document.querySelector('.next-bg-up');
+            nextBgUp.style.display = container.scrollTop <= 0 ? 'none' : 'block';
+            const nextBgDown = document.querySelector('.next-bg-down');
+            nextBgDown.style.display = container.scrollTop + container.clientHeight >= container.scrollHeight ? 'none' : 'block';
+        };
+
+        const handleMouseEnter = () => {
+            if (interval) return;
+            interval = setInterval(() => {
+                container.scrollTop -= hoverSpeed;
+            }, 10);
+        };
+
+        const handleMouseLeave = () => {
+            if (!interval) return;
+            clearInterval(interval);
+            interval = null;
+        };
+
+        const handleMouseDown = () => {
+            clearInterval(interval);
+            interval = setInterval(() => {
+                container.scrollTop -= holdSpeed;
+            }, 10);
+        };
+
+        const handleMouseUp = () => {
+            if (toggle.matches(':hover')) {
+                toggle.dispatchEvent(new MouseEvent('mouseenter'));
+                clearInterval(interval);
+                interval = setInterval(() => {
+                    container.scrollTop -= hoverSpeed;
+                }, 10);
+            }
+        };
+
+        container.addEventListener('scroll', isScrollAtEdge);
+        toggle.addEventListener('mouseenter', handleMouseEnter);
+        toggle.addEventListener('mouseleave', handleMouseLeave);
+        toggle.addEventListener('mousedown', handleMouseDown);
+        document.addEventListener('mouseup', handleMouseUp);
+    };
 
     // Opens the file selection dialog when the user clicks the select image button
     document.querySelector('#select-image-btn').addEventListener('click', (event) => {
@@ -46,18 +101,6 @@
         }
     });
 
-    // Open the translucent background
-    const showShadowBackground = (event, dialog) => {
-        event.preventDefault();
-        const bgShadow = document.querySelector('.bg-shadow');
-        bgShadow.style.display = 'block';
-
-        bgShadow.addEventListener('click', () => {
-            bgShadow.style.display = 'none';
-            document.querySelector(dialog).style.display = 'none';
-        });
-    };
-
     // Open the location selection dialog
     document.querySelector('#select-location-btn').addEventListener('click', (event) => {
         showShadowBackground(event, '#select-location');
@@ -73,78 +116,13 @@
         });
     });
 
-    const scrollContainer = document.querySelector('.slide');
-
-    scrollContainer.addEventListener('scroll', () => {
-        const nextBgUp = document.querySelector('.next-bg-up');
-        nextBgUp.style.display = scrollContainer.scrollTop <= 0 ? 'none' : 'block';
-        const nextBgDown = document.querySelector('.next-bg-down');
-        nextBgDown.style.display = scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight ? 'none' : 'block';
-    });
-
+    // Hover or hold on mouse to slide options
+    const scrollContainer = document.querySelector('.slide-content');
     const nextToggleUp = document.querySelector('.next-toggle-up');
     const nextToggleDown = document.querySelector('.next-toggle-down');
-
     let scrollInterval;
 
-    nextToggleUp.addEventListener('mouseenter', () => {
-        if (scrollInterval) return;
-        scrollInterval = setInterval(() => {
-            scrollContainer.scrollTop -= 3;
-        }, 10);
-    });
-
-    nextToggleUp.addEventListener('mouseleave', () => {
-        if (!scrollInterval) return;
-        clearInterval(scrollInterval);
-        scrollInterval = null;
-    });
-
-    nextToggleUp.addEventListener('mousedown', () => {
-        clearInterval(scrollInterval);
-        scrollInterval = setInterval(() => {
-            scrollContainer.scrollTop -= 6;
-        }, 10);
-    });
-
-    document.addEventListener('mouseup', () => {
-        if (nextToggleUp.matches(':hover')) {
-            nextToggleUp.dispatchEvent(new MouseEvent('mouseenter'));
-            clearInterval(scrollInterval);
-            scrollInterval = setInterval(() => {
-                scrollContainer.scrollTop -= 3;
-            }, 10);
-        }
-    });
-
-    nextToggleDown.addEventListener('mouseenter', () => {
-        if (scrollInterval) return;
-        scrollInterval = setInterval(() => {
-            scrollContainer.scrollTop += 3;
-        }, 10);
-    });
-
-    nextToggleDown.addEventListener('mouseleave', () => {
-        if (!scrollInterval) return;
-        clearInterval(scrollInterval);
-        scrollInterval = null;
-    });
-
-    nextToggleDown.addEventListener('mousedown', () => {
-        clearInterval(scrollInterval);
-        scrollInterval = setInterval(() => {
-            scrollContainer.scrollTop += 6;
-        }, 10);
-    });
-
-    document.addEventListener('mouseup', () => {
-        if (nextToggleDown.matches(':hover')) {
-            nextToggleDown.dispatchEvent(new MouseEvent('mouseenter'));
-            clearInterval(scrollInterval);
-            scrollInterval = setInterval(() => {
-                scrollContainer.scrollTop += 3;
-            }, 10);
-        }
-    });
+    handleScrollArrow(scrollInterval, scrollContainer, nextToggleUp, 3, 6);
+    handleScrollArrow(scrollInterval, scrollContainer, nextToggleDown, -3, -6);
 
 })();
