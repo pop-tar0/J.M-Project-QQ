@@ -1,5 +1,5 @@
 // Open the translucent background
-export const showShadowBackground = (event, dialog) => {
+export const openShadowBackground = (event, dialog) => {
     event.preventDefault();
     const bgShadow = document.querySelector('.bg-shadow');
     bgShadow.style.display = 'block';
@@ -8,6 +8,13 @@ export const showShadowBackground = (event, dialog) => {
         bgShadow.style.display = 'none';
         document.querySelector(dialog).style.display = 'none';
     });
+};
+
+// Close the translucent background
+export const closeShadowBackground = (event) => {
+    event.preventDefault();
+    const bgShadow = document.querySelector('.bg-shadow');
+    bgShadow.style.display = 'none';
 };
 
 export default {};

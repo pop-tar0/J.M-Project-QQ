@@ -1,4 +1,4 @@
-import { showShadowBackground } from './showShadowBackground';
+import { closeShadowBackground, openShadowBackground } from './shadowBackground';
 import { handleScrollArrow } from './handleScrollArrow';
 
 // Select Image
@@ -45,24 +45,77 @@ document.querySelector('#selectedImage').addEventListener('click', (event) => {
 // Selection Location
 // Open the location selection dialog
 document.querySelector('#select-location-btn').addEventListener('click', (event) => {
-    showShadowBackground(event, '#select-location');
+    openShadowBackground(event, '#select-location');
     const selectLocation = document.querySelector('#select-location');
     selectLocation.style.display = 'block';
 
     const closeBtn = selectLocation.querySelector('.close-btn');
 
-    closeBtn.addEventListener('click', () => {
+    closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         const bg = document.querySelector('.bg-shadow');
         bg.style.display = 'none';
         document.querySelector('#select-location').style.display = 'none';
     });
 });
 
-// Hover or hold on mouse to slide options
-const scrollContainer = document.querySelector('.slide-content');
+// Hover or hold on mouse to slide location options
+const slideContent = document.querySelector('.slide-content');
 const nextToggleUp = document.querySelector('.next-toggle-up');
 const nextToggleDown = document.querySelector('.next-toggle-down');
 let scrollInterval;
 
-handleScrollArrow(scrollInterval, scrollContainer, nextToggleUp, 3, 6);
-handleScrollArrow(scrollInterval, scrollContainer, nextToggleDown, -3, -6);
+handleScrollArrow(scrollInterval, slideContent, nextToggleUp, 3, 6);
+handleScrollArrow(scrollInterval, slideContent, nextToggleDown, -3, -6);
+
+// click location options to add location information into the post
+const locationBtns = slideContent.querySelectorAll('.location-btn');
+
+const showLocation = (event) => {
+    event.preventDefault();
+    const postContainer = document.querySelector('.post-container');
+    const locationBtn = event.currentTarget;
+    const location = locationBtn.querySelector('.location').textContent;
+
+    const locationIcon = document.createElement('i');
+    locationIcon.classList.add('fas', 'fa-map-marker-alt', 'my-auto', 'text-xs', 'mr-2');
+
+    const locationName = document.createElement('div');
+    locationName.classList.add('my-auto', 'select-none');
+    locationName.textContent = location;
+
+    const locationNameSide = document.createElement('div');
+    locationNameSide.classList.add('location-name-side', 'flex', 'bg-gray-200', 'text-white', 'h-8', 'rounded-lg', 'w-auto');
+    locationNameSide.append(locationIcon);
+    locationNameSide.appendChild(locationName);
+
+    const closeBtn = document.createElement('button');
+    closeBtn.classList.add('close-btn', 'bg-gray-300', 'rounded-full', 'text-center', 'select-none', 'absolute');
+    closeBtn.textContent = '✖️';
+
+    const locationTag = document.createElement('div');
+    locationTag.classList.add('location-tag', 'absolute');
+
+    locationTag.append(locationNameSide);
+    locationTag.append(closeBtn);
+
+    postContainer.appendChild(locationTag);
+
+    closeBtn.addEventListener('click', () => {
+        locationTag.remove();
+    });
+};
+
+locationBtns.forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const locationTag = document.querySelector('.location-tag');
+        if (locationTag) {
+            locationTag.remove();
+        }
+        showLocation(event);
+        const selectLocation = document.querySelector('#select-location');
+        selectLocation.style.display = 'none';
+        closeShadowBackground(event);
+    });
+});
