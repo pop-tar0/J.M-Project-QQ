@@ -63,17 +63,25 @@ document.querySelector('#select-location-btn').addEventListener('click', (event)
 const slideContent = document.querySelector('.slide-content');
 const nextToggleUp = document.querySelector('.next-toggle-up');
 const nextToggleDown = document.querySelector('.next-toggle-down');
+const postInformation = document.querySelector('.post-information');
 let scrollInterval;
 
 handleScrollArrow(scrollInterval, slideContent, nextToggleUp, 3, 6);
 handleScrollArrow(scrollInterval, slideContent, nextToggleDown, -3, -6);
 
-// click location options to add location information into the post
+// Click location options to add location information into the post
 const locationBtns = slideContent.querySelectorAll('.location-btn');
+
+//
+const adjustMoodTagPosition = () => {
+    const moodTag = document.querySelector('.mood-tag');
+    if (moodTag) {
+        moodTag.style.marginLeft = '8px'; // 设置 mood tag 的左侧边距为默认值
+    }
+};
 
 const showLocation = (event) => {
     event.preventDefault();
-    const postContainer = document.querySelector('.post-container');
     const locationBtn = event.currentTarget;
     const location = locationBtn.querySelector('.location').textContent;
 
@@ -99,10 +107,17 @@ const showLocation = (event) => {
     locationTag.append(locationNameSide);
     locationTag.append(closeBtn);
 
-    postContainer.appendChild(locationTag);
+    postInformation.appendChild(locationTag);
+
+    const moodTag = document.querySelector('.mood-tag');
+    if (moodTag) {
+        const distance = locationTag.offsetWidth + 16;
+        moodTag.style.marginLeft = `${distance}px`;
+    }
 
     closeBtn.addEventListener('click', () => {
         locationTag.remove();
+        adjustMoodTagPosition();
     });
 };
 
@@ -117,5 +132,96 @@ locationBtns.forEach((btn) => {
         const selectLocation = document.querySelector('#select-location');
         selectLocation.style.display = 'none';
         closeShadowBackground(event);
+    });
+});
+
+// Select Mood
+const selectMoodBtn = document.querySelector('#select-mood-btn');
+const moodBar = document.querySelector('#mood-bar');
+
+// Click anywhere except the moodBar will close it
+document.addEventListener('click', (event) => {
+    if (!moodBar.contains(event.target) && event.target !== selectMoodBtn) {
+        moodBar.style.display = 'none';
+    }
+});
+
+// Clicking the select mood button can control whether the bar is open or not
+selectMoodBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    const moodBarStyle = window.getComputedStyle(moodBar);
+    if (moodBarStyle.display === 'none') {
+        moodBar.style.display = 'flex';
+    } else {
+        moodBar.style.display = 'none';
+    }
+});
+
+// Choose one, and the others will be minimized to the side
+const emojis = moodBar.querySelectorAll('.emoji');
+
+const hoverOnEmoji = (emoji, emojiArray) => {
+    if (emoji === emojiArray[0]) {
+        emojiArray[1].classList.add('ml-2');
+    } else if (emoji === emojiArray[emojiArray.length - 1]) {
+        emojiArray[emojiArray.length - 1].classList.add('ml-2');
+    } else {
+        emoji.classList.add('ml-2', 'mr-2');
+    }
+};
+
+const hoverOutEmoji = (emoji, emojiArray) => {
+    if (emoji === emojiArray[0]) {
+        emojiArray[1].classList.remove('ml-2');
+    } else if (emoji === emojiArray[emojiArray.length - 1]) {
+        emojiArray[emojiArray.length - 1].classList.remove('ml-2');
+    } else {
+        emoji.classList.remove('ml-2', 'mr-2');
+    }
+};
+
+// Click location options to add location information into the post
+const showMood = (event) => {
+    event.preventDefault();
+    const mood = event.currentTarget.textContent;
+
+    const moodContent = document.createElement('div');
+    moodContent.classList.add('mood-content', 'bg-gray-200', 'h-8', 'rounded-lg', 'w-8', 'absolute', 'text-center', 'leading-8', 'text-xl', 'select-none');
+    moodContent.textContent = mood;
+
+    const closeBtn = document.createElement('button');
+    closeBtn.classList.add('close-btn', 'bg-gray-300', 'rounded-full', 'text-center', 'select-none', 'absolute');
+    closeBtn.textContent = '✖️';
+
+    const moodTag = document.createElement('div');
+    moodTag.classList.add('mood-tag', 'absolute');
+    moodTag.appendChild(moodContent);
+    moodTag.appendChild(closeBtn);
+
+    postInformation.appendChild(moodTag);
+
+    const locationTag = document.querySelector('.location-tag');
+    if (locationTag) {
+        const distance = locationTag.offsetWidth + 16;
+        moodTag.style.marginLeft = `${distance}px`;
+    }
+
+    closeBtn.addEventListener('click', () => {
+        moodTag.remove();
+    });
+};
+
+emojis.forEach((emoji) => {
+    // Passing a function to addEventListener allows the function to be executed when the event occurs, rather than executing it immediately
+    emoji.addEventListener('mouseenter', () => hoverOnEmoji(emoji, emojis));
+    emoji.addEventListener('mouseleave', () => hoverOutEmoji(emoji, emojis));
+    emoji.addEventListener('click', (e) => {
+        e.preventDefault();
+        const moodTag = document.querySelector('.mood-tag');
+        if (moodTag) {
+            moodTag.remove();
+        }
+        showMood(e);
+        moodBar.style.display = 'none';
     });
 });

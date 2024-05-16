@@ -58,6 +58,15 @@ article .post-panel .row .btn-bar {
     height: 120px;
 }
 
+article .post-panel .row .btn-bar .mood-bar {
+    bottom: 4px;
+    left: 120%;
+}
+
+article .post-panel .row .btn-bar .mood-bar .box-body {
+    margin-left: -10px;
+}
+
 article .post-panel .row .post-container {
     width: calc(100%*5/6);
 }
@@ -85,6 +94,24 @@ article .post-panel .row .post-container .location-tag .close-btn:active {
 
 article .post-panel .row .post-container .location-tag .location-name-side {
     padding: 0 12px 0 12px;
+}
+
+article .post-panel .row .post-container .mood-tag {
+    top: 187px;
+    margin-left: 8px;
+}
+
+article .post-panel .row .post-container .mood-tag .close-btn {
+    height: 15px;
+    width: 15px;
+    top: -5px;
+    left: 20px;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+article .post-panel .row .post-container .mood-tag .close-btn:active {
+    opacity: 0.8;
 }
 
 article .post-panel .row .post-container .post-btn {
@@ -163,6 +190,10 @@ aside ul .side-bar .bar-name {
 
 aside ul .side-bar ul li .explore-item {
     line-height: 40px;
+}
+
+aside .site-information {
+    bottom: 8px;
 }
 
 .select-location {

@@ -52,7 +52,7 @@
                 <img src="assets/img/profile-photo.png" class="h-100 w-full rounded-lg" alt="Error圖片錯誤">
               </div>
               <div class="flex justify-center w-7/12 mx-auto">
-                <div class="btn-bar flex flex-col justify-around mt-1 w-full">
+                <div class="btn-bar flex flex-col justify-around mt-1 w-full relative   ">
                   <!--Image button-->
                   <label class="text-center w-full bg-gray-300 btn-hover text-white h-8 leading-8 cursor-pointer rounded-lg hover:opacity-80" for="fileInput" id="select-image-btn">
                     <i class="fas fa-image"></i>
@@ -63,9 +63,21 @@
                     <i class="fas fa-map-marker-alt"></i>
                   </button>
                   <!--Mood button-->  
-                  <button class="bg-gray-300 text-white h-8 rounded-lg hover:opacity-80">
+                  <button class="bg-gray-300 text-white h-8 rounded-lg hover:opacity-80" id="select-mood-btn">
                     <i class="fas fa-smile"></i>
                   </button>
+                  <div class="mood-bar absolute" id="mood-bar" hidden>
+                    <div class="box-head transform rotate-45 h-4 w-4 bg-gray-200 mt-auto mb-2"></div>
+                    <div class="box-body h-12 w-64 bg-gray-200 rounded-lg flex justify-between text-3xl z-10 pl-2 pr-2">
+                      <button class="emoji transform hover:scale-150 duration-300 delay-75">😀</button>
+                      <button class="emoji transform hover:scale-150 duration-300 delay-75">😅</button>
+                      <button class="emoji transform hover:scale-150 duration-300 delay-75">😕</button>
+                      <button class="emoji transform hover:scale-150 duration-300 delay-75">😢</button>
+                      <button class="emoji transform hover:scale-150 duration-300 delay-75">😭</button>
+                      <button class="emoji transform hover:scale-150 duration-300 delay-75">🤬</button>
+                      <button class="emoji transform hover:scale-150 duration-300 delay-75">😱</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -75,6 +87,7 @@
                 <i class="fas fa-paper-plane"></i>
               </button>
               <div class="selectedImage flex mt-2" id="selectedImage"></div>
+              <div class="post-information flex" id="post-information"></div>
             </div>
           </div>
         </form>
@@ -163,7 +176,7 @@
             </ul>
           </li>
         </ul>
-        <p class="site-information fixed text-white font-hairline tracking-wider bottom-0">SocialScape © pop.tar0 2024 - J.M Project Implimentation 666</p>
+        <p class="site-information fixed text-white font-hairline tracking-wider">SocialScape © pop.tar0 2024 - J.M Project Implimentation 666</p>
       </aside>
     </main>
 
