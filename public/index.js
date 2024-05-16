@@ -207,14 +207,14 @@
     const selectMoodBtn = document.querySelector('#select-mood-btn');
     const moodBar = document.querySelector('#mood-bar');
 
-    // Click anywhere except the moodBar will close it
+    // Click anywhere except the .mood-bar element will close it
     document.addEventListener('click', (event) => {
         if (!moodBar.contains(event.target) && event.target !== selectMoodBtn) {
             moodBar.style.display = 'none';
         }
     });
 
-    // Clicking the select mood button can control whether the bar is open or not
+    // Clicking the .select-mood-btn element element can control whether the bar is open or not
     selectMoodBtn.addEventListener('click', (event) => {
         event.preventDefault();
         const moodBarStyle = window.getComputedStyle(moodBar);
@@ -280,6 +280,7 @@
     };
 
     emojis.forEach((emoji) => {
+        // Passing a function to addEventListener allows the function to be executed when the event occurs, rather than executing it immediately
         emoji.addEventListener('mouseenter', () => hoverOnEmoji(emoji, emojis));
         emoji.addEventListener('mouseleave', () => hoverOutEmoji(emoji, emojis));
         emoji.addEventListener('click', (e) => {
@@ -290,6 +291,67 @@
             }
             showMood(e);
             moodBar.style.display = 'none';
+        });
+    });
+
+    // Click more button on post will open .more-bar element
+    const moreBtns = document.querySelectorAll('.more-btn');
+    const moreBars = document.querySelectorAll('.more-bar');
+
+    const openMoreBar = (moreBtn) => {
+        // Retrieve the next sibling element node of the current element
+        const moreBar = moreBtn.nextElementSibling;
+        const moreBarStyle = window.getComputedStyle(moreBar);
+
+        moreBars.forEach((initialBar) => {
+            if (initialBar !== moreBar) {
+                const bar = initialBar;
+                bar.style.display = 'none';
+            }
+        });
+
+        if (moreBarStyle.display === 'none') {
+            moreBar.style.display = 'flex';
+        } else {
+            moreBar.style.display = 'none';
+        }
+    };
+
+    moreBtns.forEach((moreBtn) => {
+        moreBtn.addEventListener('click', () => {
+            openMoreBar(moreBtn);
+        });
+    });
+
+    // Click anywhere except the moreBtn and moreBar will close it
+    document.addEventListener('click', (event) => {
+        moreBars.forEach((initialMoreBar) => {
+            const moreBar = initialMoreBar;
+            let isMoreBtnClicked = false;
+
+            // Check if the click target is any of the .more-btn elements
+            moreBtns.forEach((moreBtn) => {
+                if (moreBtn.contains(event.target)) {
+                    isMoreBtnClicked = true;
+                }
+            });
+
+            // Check if the click target is not within moreBar and not a .more-btn element
+            if (!moreBar.contains(event.target) && !isMoreBtnClicked) {
+                moreBar.style.display = 'none';
+            }
+        });
+    });
+
+    // Click hide button to close the post
+    const hideBtns = document.querySelectorAll('.hide-btn');
+
+    hideBtns.forEach((hideBtn) => {
+        hideBtn.addEventListener('click', () => {
+            const post = hideBtn.closest('.post');
+            if (post) {
+                post.remove();
+            }
         });
     });
 

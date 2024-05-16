@@ -154,7 +154,7 @@ article .post .row .poster-information {
 }
 
 article .post .row .poster-information .poster-photo {
-    height: 9.5%;
+    height: 6vw;
 }
 
 article .post .row .post-content-panel {
@@ -163,6 +163,15 @@ article .post .row .post-content-panel {
 
 article .post .row .post-content-panel .post-content {
     width: calc(100% - 40px);
+}
+
+article .post .row .post-content-panel .more-container {
+    right: -45px;
+    top: 8px;
+}
+
+article .post .row .post-content-panel .more-container .more-bar .more-bar-body {
+    margin-top: -10px;
 }
 
 /*隱藏scrollbar*/
