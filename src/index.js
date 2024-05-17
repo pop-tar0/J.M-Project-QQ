@@ -228,70 +228,42 @@ emojis.forEach((emoji) => {
     });
 });
 
-// Click more button on post will open .more-bar element
-const moreBtns = document.querySelectorAll('.more-btn');
-const moreBars = document.querySelectorAll('.more-bar');
+// Post feature
+const posts = document.querySelectorAll('.post');
 
-const openMoreBar = (moreBtn) => {
-    // Retrieve the next sibling element node of the current element
-    const moreBar = moreBtn.nextElementSibling;
-    const moreBarStyle = window.getComputedStyle(moreBar);
+posts.forEach((post) => {
+    // Click more button on post will open .more-bar element
+    const moreBtn = post.querySelector('.more-btn');
+    const moreBar = post.querySelector('.more-bar');
 
-    moreBars.forEach((initialBar) => {
-        if (initialBar !== moreBar) {
-            const bar = initialBar;
-            bar.style.display = 'none';
-        }
+    moreBtn.addEventListener('click', (event) => {
+        toggleVisibility(moreBar, 'flex')(event);
     });
 
-    if (moreBarStyle.display === 'none') {
-        moreBar.style.display = 'flex';
-    } else {
-        moreBar.style.display = 'none';
-    }
-};
-
-moreBtns.forEach((moreBtn) => {
-    moreBtn.addEventListener('click', () => {
-        openMoreBar(moreBtn);
-    });
-});
-
-// Click anywhere except the moreBtn and moreBar will close it
-document.addEventListener('click', (event) => {
-    moreBars.forEach((initialMoreBar) => {
-        const moreBar = initialMoreBar;
+    // Click anywhere except the moreBtn and moreBar will close it
+    document.addEventListener('click', (event) => {
         let isMoreBtnClicked = false;
 
         // Check if the click target is any of the .more-btn elements
-        moreBtns.forEach((moreBtn) => {
-            if (moreBtn.contains(event.target)) {
-                isMoreBtnClicked = true;
-            }
-        });
+        if (moreBtn.contains(event.target)) {
+            isMoreBtnClicked = true;
+        }
 
         // Check if the click target is not within moreBar and not a .more-btn element
         if (!moreBar.contains(event.target) && !isMoreBtnClicked) {
             moreBar.style.display = 'none';
         }
     });
-});
 
-// Click hide button to close the post
-const hideBtns = document.querySelectorAll('.hide-btn');
+    // Click hide button to close the post
+    const hideBtn = post.querySelector('.hide-btn');
 
-hideBtns.forEach((hideBtn) => {
     hideBtn.addEventListener('click', () => {
-        const post = hideBtn.closest('.post');
         if (post) {
             post.remove();
         }
     });
-});
 
-const posts = document.querySelectorAll('.post');
-
-posts.forEach((post) => {
     // Clicking the like button
     const likeBtn = post.querySelector('.like-btn');
     const likeIcon = likeBtn.querySelector('.like-icon');
@@ -305,7 +277,7 @@ posts.forEach((post) => {
     commentBtn.addEventListener('click', (event) => {
         const commentContainer = post.querySelector('.comment-container');
         colorizeIconWithAnimation(commentIcon, '#fde68a', '.comment-icon')(event);
-        toggleVisibility(commentContainer)(event);
+        toggleVisibility(commentContainer, 'block')(event);
     });
 
     // Clicking the share button
