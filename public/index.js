@@ -69,6 +69,28 @@
         document.addEventListener('mouseup', handleMouseUp);
     };
 
+    const handleLikeButtonClick = (IconStyle, color, element) => (event) => {
+        const effectIcon = event.currentTarget.querySelector(element);
+        const currentColor = IconStyle.color;
+
+        effectIcon.classList.add('color-transition');
+
+        if (currentColor === 'rgb(255, 255, 255)') {
+            effectIcon.style.color = color;
+            effectIcon.classList.remove('bounce');
+            effectIcon.classList.add('bounce');
+        } else {
+            effectIcon.style.color = 'white';
+            effectIcon.classList.remove('bounce');
+            effectIcon.classList.remove('color-transition');
+        }
+
+        return {
+            ...IconStyle,
+            color: currentColor === 'rgb(255, 255, 255)' ? color : 'white',
+        };
+    };
+
     // Select Image
     // Opens the file selection dialog when the user clicks the select image button
     document.querySelector('#select-image-btn').addEventListener('click', (event) => {
@@ -353,6 +375,33 @@
                 post.remove();
             }
         });
+    });
+
+    // Clicking the like button will turn it red and make it bounce
+    const likeBtns = document.querySelectorAll('.like-btn');
+
+    likeBtns.forEach((likeBtn) => {
+        const likeIcon = likeBtn.querySelector('.like-icon');
+        const likeIconStyle = window.getComputedStyle(likeIcon);
+        likeBtn.addEventListener('click', handleLikeButtonClick(likeIconStyle, '#f87171', '.like-icon'));
+    });
+
+    // Clicking the comment button will turn it red and make it bounce
+    const commentBtns = document.querySelectorAll('.comment-btn');
+
+    commentBtns.forEach((commentBtn) => {
+        const commentIcon = commentBtn.querySelector('.comment-icon');
+        const commentIconStyle = window.getComputedStyle(commentIcon);
+        commentBtn.addEventListener('click', handleLikeButtonClick(commentIconStyle, '#fde68a', '.comment-icon'));
+    });
+
+    // Clicking the share button will turn it red and make it bounce
+    const shareBtns = document.querySelectorAll('.share-btn');
+
+    shareBtns.forEach((shareBtn) => {
+        const shareIcon = shareBtn.querySelector('.share-icon');
+        const shareIconStyle = window.getComputedStyle(shareIcon);
+        shareBtn.addEventListener('click', handleLikeButtonClick(shareIconStyle, '#7dd3fc', '.share-icon'));
     });
 
 })();

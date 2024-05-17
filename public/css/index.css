@@ -165,12 +165,17 @@ article .post .row .post-content-panel .post-content {
     width: calc(100% - 40px);
 }
 
-article .post .row .post-content-panel .more-container {
-    right: -45px;
-    top: 8px;
+article .post .row .post-content-panel .post-content .post-time-container {
+    top: 16px;
+    right: 60px;
 }
 
-article .post .row .post-content-panel .more-container .more-bar .more-bar-body {
+article .post .row .post-content-panel .post-content .more-container {
+    top: 8px;
+    right: -45px;
+}
+
+article .post .row .post-content-panel .post-content .more-container .more-bar .more-bar-body {
     margin-top: -10px;
 }
 
@@ -283,3 +288,23 @@ aside .site-information {
     transform: scale(0.8);
 }
 
+/*Animation*/
+@keyframes bounceAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.bounce {
+    animation: bounceAnimation 0.3s ease;
+}
+
+.color-transition {
+    transition: color 0.3s ease;
+}
