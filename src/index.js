@@ -1,6 +1,7 @@
 import { closeShadowBackground, openShadowBackground } from './shadowBackground';
 import { handleScrollArrow } from './handleScrollArrow';
-import { handleLikeButtonClick } from './animation';
+import { colorizeIconWithAnimation } from './animation';
+import { toggleVisibility } from './utils';
 
 // Select Image
 // Opens the file selection dialog when the user clicks the select image button
@@ -288,29 +289,29 @@ hideBtns.forEach((hideBtn) => {
     });
 });
 
-// Clicking the like button will turn it red and make it bounce
-const likeBtns = document.querySelectorAll('.like-btn');
+const posts = document.querySelectorAll('.post');
 
-likeBtns.forEach((likeBtn) => {
+posts.forEach((post) => {
+    // Clicking the like button
+    const likeBtn = post.querySelector('.like-btn');
     const likeIcon = likeBtn.querySelector('.like-icon');
-    const likeIconStyle = window.getComputedStyle(likeIcon);
-    likeBtn.addEventListener('click', handleLikeButtonClick(likeIconStyle, '#f87171', '.like-icon'));
-});
+    likeBtn.addEventListener('click', (event) => {
+        colorizeIconWithAnimation(likeIcon, '#f87171', '.like-icon')(event);
+    });
 
-// Clicking the comment button will turn it red and make it bounce
-const commentBtns = document.querySelectorAll('.comment-btn');
-
-commentBtns.forEach((commentBtn) => {
+    // Clicking the comment button
+    const commentBtn = post.querySelector('.comment-btn');
     const commentIcon = commentBtn.querySelector('.comment-icon');
-    const commentIconStyle = window.getComputedStyle(commentIcon);
-    commentBtn.addEventListener('click', handleLikeButtonClick(commentIconStyle, '#fde68a', '.comment-icon'));
-});
+    commentBtn.addEventListener('click', (event) => {
+        const commentContainer = post.querySelector('.comment-container');
+        colorizeIconWithAnimation(commentIcon, '#fde68a', '.comment-icon')(event);
+        toggleVisibility(commentContainer)(event);
+    });
 
-// Clicking the share button will turn it red and make it bounce
-const shareBtns = document.querySelectorAll('.share-btn');
-
-shareBtns.forEach((shareBtn) => {
+    // Clicking the share button
+    const shareBtn = post.querySelector('.share-btn');
     const shareIcon = shareBtn.querySelector('.share-icon');
-    const shareIconStyle = window.getComputedStyle(shareIcon);
-    shareBtn.addEventListener('click', handleLikeButtonClick(shareIconStyle, '#7dd3fc', '.share-icon'));
+    shareBtn.addEventListener('click', (event) => {
+        colorizeIconWithAnimation(shareIcon, '#7dd3fc', '.share-icon')(event);
+    });
 });

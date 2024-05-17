@@ -1,5 +1,6 @@
-export const handleLikeButtonClick = (IconStyle, color, element) => (event) => {
+export const colorizeIconWithAnimation = (likeIcon, color, element) => (event) => {
     const effectIcon = event.currentTarget.querySelector(element);
+    const IconStyle = window.getComputedStyle(likeIcon);
     const currentColor = IconStyle.color;
 
     effectIcon.classList.add('color-transition');
@@ -15,8 +16,10 @@ export const handleLikeButtonClick = (IconStyle, color, element) => (event) => {
     }
 
     return {
-        ...IconStyle,
-        color: currentColor === 'rgb(255, 255, 255)' ? color : 'white',
+        style: {
+            ...IconStyle,
+            color: currentColor === 'rgb(255, 255, 255)' ? color : 'white',
+        },
     };
 };
 

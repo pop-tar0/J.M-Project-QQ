@@ -179,6 +179,22 @@ article .post .row .post-content-panel .post-content .more-container .more-bar .
     margin-top: -10px;
 }
 
+article .post .row .post-content-panel .post-content .comment-container .comment-textarea {
+    padding-top: 10px;
+    padding-right: 6%;
+    height: 50px;
+}
+
+article .post .row .post-content-panel .post-content .comment-container .comment-textarea::-webkit-scrollbar {
+    display: none;
+}
+
+article .post .row .post-content-panel .post-content .comment-container .add-comment-btn {
+    width: 5%;
+    bottom: 24px;
+    right: 24px;
+}
+
 /*隱藏scrollbar*/
 article::-webkit-scrollbar {
     display: none;

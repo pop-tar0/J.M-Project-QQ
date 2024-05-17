@@ -69,8 +69,9 @@
         document.addEventListener('mouseup', handleMouseUp);
     };
 
-    const handleLikeButtonClick = (IconStyle, color, element) => (event) => {
+    const colorizeIconWithAnimation = (likeIcon, color, element) => (event) => {
         const effectIcon = event.currentTarget.querySelector(element);
+        const IconStyle = window.getComputedStyle(likeIcon);
         const currentColor = IconStyle.color;
 
         effectIcon.classList.add('color-transition');
@@ -86,8 +87,27 @@
         }
 
         return {
-            ...IconStyle,
-            color: currentColor === 'rgb(255, 255, 255)' ? color : 'white',
+            style: {
+                ...IconStyle,
+                color: currentColor === 'rgb(255, 255, 255)' ? color : 'white',
+            },
+        };
+    };
+
+    const toggleVisibility = (initialElement) => {
+        const element = initialElement;
+        const elementStyle = window.getComputedStyle(element);
+        if (elementStyle.display === 'none') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+        return {
+            ...initialElement,
+            style: {
+                ...initialElement.style,
+                display: elementStyle.display === 'none' ? 'block' : 'none',
+            },
         };
     };
 
@@ -377,31 +397,31 @@
         });
     });
 
-    // Clicking the like button will turn it red and make it bounce
-    const likeBtns = document.querySelectorAll('.like-btn');
+    const posts = document.querySelectorAll('.post');
 
-    likeBtns.forEach((likeBtn) => {
+    posts.forEach((post) => {
+        // Clicking the like button
+        const likeBtn = post.querySelector('.like-btn');
         const likeIcon = likeBtn.querySelector('.like-icon');
-        const likeIconStyle = window.getComputedStyle(likeIcon);
-        likeBtn.addEventListener('click', handleLikeButtonClick(likeIconStyle, '#f87171', '.like-icon'));
-    });
+        likeBtn.addEventListener('click', (event) => {
+            colorizeIconWithAnimation(likeIcon, '#f87171', '.like-icon')(event);
+        });
 
-    // Clicking the comment button will turn it red and make it bounce
-    const commentBtns = document.querySelectorAll('.comment-btn');
-
-    commentBtns.forEach((commentBtn) => {
+        // Clicking the comment button
+        const commentBtn = post.querySelector('.comment-btn');
         const commentIcon = commentBtn.querySelector('.comment-icon');
-        const commentIconStyle = window.getComputedStyle(commentIcon);
-        commentBtn.addEventListener('click', handleLikeButtonClick(commentIconStyle, '#fde68a', '.comment-icon'));
-    });
+        commentBtn.addEventListener('click', (event) => {
+            const commentContainer = post.querySelector('.comment-container');
+            colorizeIconWithAnimation(commentIcon, '#fde68a', '.comment-icon')(event);
+            toggleVisibility(commentContainer)(event);
+        });
 
-    // Clicking the share button will turn it red and make it bounce
-    const shareBtns = document.querySelectorAll('.share-btn');
-
-    shareBtns.forEach((shareBtn) => {
+        // Clicking the share button
+        const shareBtn = post.querySelector('.share-btn');
         const shareIcon = shareBtn.querySelector('.share-icon');
-        const shareIconStyle = window.getComputedStyle(shareIcon);
-        shareBtn.addEventListener('click', handleLikeButtonClick(shareIconStyle, '#7dd3fc', '.share-icon'));
+        shareBtn.addEventListener('click', (event) => {
+            colorizeIconWithAnimation(shareIcon, '#7dd3fc', '.share-icon')(event);
+        });
     });
 
 })();
