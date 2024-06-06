@@ -342,10 +342,14 @@ const renderPost = (posts) => {
 
 document.addEventListener('DOMContentLoaded', renderPost(postInfo));
 
+const updateLikeQuantity = (postIndex, num) => {
+    postInfo[postIndex].likeQuantity = num;
+};
+
 // Post feature
 const posts = document.querySelectorAll('.post');
 
-posts.forEach((post) => {
+posts.forEach((post, index) => {
     // Click more button on post will open .more-bar element
     const moreBtn = post.querySelector('.more-btn');
     const moreBar = post.querySelector('.more-bar');
@@ -379,6 +383,8 @@ posts.forEach((post) => {
         }
     });
 
+    let isLike = false;
+
     // Clicking the like button
     const likeBtn = post.querySelector('.like-btn');
     const likeIcon = likeBtn.querySelector('.like-icon');
@@ -387,6 +393,14 @@ posts.forEach((post) => {
         Object.assign(likeIcon.style, style);
         classes.forEach((cls) => likeIcon.classList.add(cls));
         removeClasses.forEach((cls) => likeIcon.classList.remove(cls));
+
+        const likesQuantity = post.querySelector('.likes-quantity');
+        let currentLikes = parseInt(likesQuantity.innerHTML, 10);
+        const likeChange = isLike ? -1 : 1;
+        updateLikeQuantity(index, postInfo[index].likeQuantity + likeChange);
+        currentLikes += likeChange;
+        likesQuantity.innerHTML = currentLikes.toString();
+        isLike = !isLike;
     });
 
     // Clicking the comment button
