@@ -1,30 +1,41 @@
 (function () {
     'use strict';
 
-    // Open the translucent background
+    // Open the translucent background and return a function to close it
     const openShadowBackground = (event, dialog) => {
         event.preventDefault();
         const bgShadow = document.querySelector('.bg-shadow');
         bgShadow.style.display = 'block';
 
-        bgShadow.addEventListener('click', () => {
+        const closeDialog = () => {
             bgShadow.style.display = 'none';
             document.querySelector(dialog).style.display = 'none';
-        });
+        };
+
+        bgShadow.addEventListener('click', closeDialog);
+
+        // Return a function to close the dialog
+        return closeDialog;
     };
 
-    // Close the translucent background
+    // Close the translucent background and return true if successful
     const closeShadowBackground = (event) => {
         event.preventDefault();
         const bgShadow = document.querySelector('.bg-shadow');
+        if (!bgShadow) {
+            return false; // Return false if element not found
+        }
+
         bgShadow.style.display = 'none';
+
+        // Return true to indicate successful closure
+        return true;
     };
 
     const handleScrollArrow = (initialInterval, initialContainer, toggle, hoverSpeed, holdSpeed) => {
         let interval = initialInterval;
         const container = initialContainer;
 
-        // If scroll is not at edge, show white translucent background
         const isScrollAtEdge = () => {
             const nextBgUp = document.querySelector('.next-bg-up');
             nextBgUp.style.display = container.scrollTop <= 0 ? 'none' : 'block';
@@ -62,52 +73,58 @@
             }
         };
 
-        container.addEventListener('scroll', isScrollAtEdge);
-        toggle.addEventListener('mouseenter', handleMouseEnter);
-        toggle.addEventListener('mouseleave', handleMouseLeave);
-        toggle.addEventListener('mousedown', handleMouseDown);
-        document.addEventListener('mouseup', handleMouseUp);
+        const addEventListeners = () => {
+            container.addEventListener('scroll', isScrollAtEdge);
+            toggle.addEventListener('mouseenter', handleMouseEnter);
+            toggle.addEventListener('mouseleave', handleMouseLeave);
+            toggle.addEventListener('mousedown', handleMouseDown);
+            document.addEventListener('mouseup', handleMouseUp);
+        };
+
+        const removeEventListeners = () => {
+            container.removeEventListener('scroll', isScrollAtEdge);
+            toggle.removeEventListener('mouseenter', handleMouseEnter);
+            toggle.removeEventListener('mouseleave', handleMouseLeave);
+            toggle.removeEventListener('mousedown', handleMouseDown);
+            document.removeEventListener('mouseup', handleMouseUp);
+            clearInterval(interval);
+            interval = null;
+        };
+
+        // When the function is called, add event listeners
+        addEventListeners();
+
+        // Return an object that allows you to remove event listeners
+        return removeEventListeners;
     };
 
-    const colorizeIconWithAnimation = (likeIcon, color, element) => (event) => {
-        const effectIcon = event.currentTarget.querySelector(element);
-        const IconStyle = window.getComputedStyle(likeIcon);
-        const currentColor = IconStyle.color;
+    const colorizeIconWithAnimation = (icon, color) => {
+        const iconStyle = window.getComputedStyle(icon);
+        const currentColor = iconStyle.color;
 
-        effectIcon.classList.add('color-transition');
+        const newStyle = {
+            color: currentColor === 'rgb(255, 255, 255)' ? color : 'white',
+            transition: 'color 0.3s',
+        };
 
+        const newClasses = ['color-transition'];
         if (currentColor === 'rgb(255, 255, 255)') {
-            effectIcon.style.color = color;
-            effectIcon.classList.remove('bounce');
-            effectIcon.classList.add('bounce');
-        } else {
-            effectIcon.style.color = 'white';
-            effectIcon.classList.remove('bounce');
-            effectIcon.classList.remove('color-transition');
+            newClasses.push('bounce');
         }
 
         return {
-            style: {
-                ...IconStyle,
-                color: currentColor === 'rgb(255, 255, 255)' ? color : 'white',
-            },
+            style: newStyle,
+            classes: newClasses,
+            removeClasses: currentColor !== 'rgb(255, 255, 255)' ? ['bounce', 'color-transition'] : [],
         };
     };
 
-    const toggleVisibility = (initialElement, display) => {
-        const element = initialElement;
+    // The function to exchange the display of the element
+    const toggleVisibility = (element, display) => {
         const elementStyle = window.getComputedStyle(element);
-        if (elementStyle.display === 'none') {
-            element.style.display = display;
-        } else {
-            element.style.display = 'none';
-        }
+        const newDisplay = elementStyle.display === 'none' ? display : 'none';
         return {
-            ...initialElement,
-            style: {
-                ...initialElement.style,
-                display: elementStyle.display === 'none' ? display : 'none',
-            },
+            display: newDisplay,
         };
     };
 
@@ -152,23 +169,6 @@
         }
     });
 
-    // Selection Location
-    // Open the location selection dialog
-    document.querySelector('#select-location-btn').addEventListener('click', (event) => {
-        openShadowBackground(event, '#select-location');
-        const selectLocation = document.querySelector('#select-location');
-        selectLocation.style.display = 'block';
-
-        const closeBtn = selectLocation.querySelector('.close-btn');
-
-        closeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const bg = document.querySelector('.bg-shadow');
-            bg.style.display = 'none';
-            document.querySelector('#select-location').style.display = 'none';
-        });
-    });
-
     // Hover or hold on mouse to slide location options
     const slideContent = document.querySelector('.slide-content');
     const nextToggleUp = document.querySelector('.next-toggle-up');
@@ -176,8 +176,27 @@
     const postInformation = document.querySelector('.post-information');
     let scrollInterval;
 
-    handleScrollArrow(scrollInterval, slideContent, nextToggleUp, 3, 6);
-    handleScrollArrow(scrollInterval, slideContent, nextToggleDown, -3, -6);
+    // Selection Location
+    // Open the location selection dialog
+    document.querySelector('#select-location-btn').addEventListener('click', (event) => {
+        const closeDialog = openShadowBackground(event, '#select-location');
+
+        const selectLocation = document.querySelector('#select-location');
+        selectLocation.style.display = 'block';
+
+        const closeBtn = selectLocation.querySelector('.close-btn');
+
+        const scrollArrowHandlerUp = handleScrollArrow(scrollInterval, slideContent, nextToggleUp, 3, 6);
+        const scrollArrowHandlerDown = handleScrollArrow(scrollInterval, slideContent, nextToggleDown, -3, -6);
+
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // The returned function from openShadowBackground
+            closeDialog();
+            scrollArrowHandlerUp.removeEventListeners();
+            scrollArrowHandlerDown.removeEventListeners();
+        });
+    });
 
     // Click location options to add location information into the post
     const locationBtns = slideContent.querySelectorAll('.location-btn');
@@ -186,7 +205,7 @@
     const adjustMoodTagPosition = () => {
         const moodTag = document.querySelector('.mood-tag');
         if (moodTag) {
-            moodTag.style.marginLeft = '8px'; // 设置 mood tag 的左侧边距为默认值
+            moodTag.style.marginLeft = '8px';
         }
     };
 
@@ -259,12 +278,9 @@
     // Clicking the .select-mood-btn element element can control whether the bar is open or not
     selectMoodBtn.addEventListener('click', (event) => {
         event.preventDefault();
-        const moodBarStyle = window.getComputedStyle(moodBar);
-        if (moodBarStyle.display === 'none') {
-            moodBar.style.display = 'flex';
-        } else {
-            moodBar.style.display = 'none';
-        }
+
+        const newStyles = toggleVisibility(moodBar, 'flex');
+        Object.assign(moodBar.style, newStyles);
     });
 
     // Choose one, and the others will be minimized to the side
@@ -344,8 +360,9 @@
         const moreBtn = post.querySelector('.more-btn');
         const moreBar = post.querySelector('.more-bar');
 
-        moreBtn.addEventListener('click', (event) => {
-            toggleVisibility(moreBar, 'flex')(event);
+        moreBtn.addEventListener('click', () => {
+            const newStyles = toggleVisibility(moreBar, 'flex');
+            Object.assign(moreBar.style, newStyles);
         });
 
         // Click anywhere except the moreBtn and moreBar will close it
@@ -375,24 +392,35 @@
         // Clicking the like button
         const likeBtn = post.querySelector('.like-btn');
         const likeIcon = likeBtn.querySelector('.like-icon');
-        likeBtn.addEventListener('click', (event) => {
-            colorizeIconWithAnimation(likeIcon, '#f87171', '.like-icon')(event);
+        likeBtn.addEventListener('click', () => {
+            const { style, classes, removeClasses } = colorizeIconWithAnimation(likeIcon, '#f87171');
+            Object.assign(likeIcon.style, style);
+            classes.forEach((cls) => likeIcon.classList.add(cls));
+            removeClasses.forEach((cls) => likeIcon.classList.remove(cls));
         });
 
         // Clicking the comment button
         const commentBtn = post.querySelector('.comment-btn');
         const commentIcon = commentBtn.querySelector('.comment-icon');
-        commentBtn.addEventListener('click', (event) => {
+        commentBtn.addEventListener('click', () => {
+            const { style, classes, removeClasses } = colorizeIconWithAnimation(commentIcon, '#fde68a');
+            Object.assign(commentIcon.style, style);
+            classes.forEach((cls) => commentIcon.classList.add(cls));
+            removeClasses.forEach((cls) => commentIcon.classList.remove(cls));
+
             const commentContainer = post.querySelector('.comment-container');
-            colorizeIconWithAnimation(commentIcon, '#fde68a', '.comment-icon')(event);
-            toggleVisibility(commentContainer, 'block')(event);
+            const newStyles = toggleVisibility(commentContainer, 'block');
+            Object.assign(commentContainer.style, newStyles);
         });
 
         // Clicking the share button
         const shareBtn = post.querySelector('.share-btn');
         const shareIcon = shareBtn.querySelector('.share-icon');
-        shareBtn.addEventListener('click', (event) => {
-            colorizeIconWithAnimation(shareIcon, '#7dd3fc', '.share-icon')(event);
+        shareBtn.addEventListener('click', () => {
+            const { style, classes, removeClasses } = colorizeIconWithAnimation(shareIcon, '#7dd3fc');
+            Object.assign(shareIcon.style, style);
+            classes.forEach((cls) => shareIcon.classList.add(cls));
+            removeClasses.forEach((cls) => shareIcon.classList.remove(cls));
         });
     });
 

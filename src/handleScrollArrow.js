@@ -2,7 +2,6 @@ export const handleScrollArrow = (initialInterval, initialContainer, toggle, hov
     let interval = initialInterval;
     const container = initialContainer;
 
-    // If scroll is not at edge, show white translucent background
     const isScrollAtEdge = () => {
         const nextBgUp = document.querySelector('.next-bg-up');
         nextBgUp.style.display = container.scrollTop <= 0 ? 'none' : 'block';
@@ -40,11 +39,29 @@ export const handleScrollArrow = (initialInterval, initialContainer, toggle, hov
         }
     };
 
-    container.addEventListener('scroll', isScrollAtEdge);
-    toggle.addEventListener('mouseenter', handleMouseEnter);
-    toggle.addEventListener('mouseleave', handleMouseLeave);
-    toggle.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mouseup', handleMouseUp);
+    const addEventListeners = () => {
+        container.addEventListener('scroll', isScrollAtEdge);
+        toggle.addEventListener('mouseenter', handleMouseEnter);
+        toggle.addEventListener('mouseleave', handleMouseLeave);
+        toggle.addEventListener('mousedown', handleMouseDown);
+        document.addEventListener('mouseup', handleMouseUp);
+    };
+
+    const removeEventListeners = () => {
+        container.removeEventListener('scroll', isScrollAtEdge);
+        toggle.removeEventListener('mouseenter', handleMouseEnter);
+        toggle.removeEventListener('mouseleave', handleMouseLeave);
+        toggle.removeEventListener('mousedown', handleMouseDown);
+        document.removeEventListener('mouseup', handleMouseUp);
+        clearInterval(interval);
+        interval = null;
+    };
+
+    // When the function is called, add event listeners
+    addEventListeners();
+
+    // Return an object that allows you to remove event listeners
+    return removeEventListeners;
 };
 
 export default {};

@@ -44,23 +44,6 @@ document.querySelector('#selectedImage').addEventListener('click', (event) => {
     }
 });
 
-// Selection Location
-// Open the location selection dialog
-document.querySelector('#select-location-btn').addEventListener('click', (event) => {
-    openShadowBackground(event, '#select-location');
-    const selectLocation = document.querySelector('#select-location');
-    selectLocation.style.display = 'block';
-
-    const closeBtn = selectLocation.querySelector('.close-btn');
-
-    closeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const bg = document.querySelector('.bg-shadow');
-        bg.style.display = 'none';
-        document.querySelector('#select-location').style.display = 'none';
-    });
-});
-
 // Hover or hold on mouse to slide location options
 const slideContent = document.querySelector('.slide-content');
 const nextToggleUp = document.querySelector('.next-toggle-up');
@@ -68,8 +51,27 @@ const nextToggleDown = document.querySelector('.next-toggle-down');
 const postInformation = document.querySelector('.post-information');
 let scrollInterval;
 
-handleScrollArrow(scrollInterval, slideContent, nextToggleUp, 3, 6);
-handleScrollArrow(scrollInterval, slideContent, nextToggleDown, -3, -6);
+// Selection Location
+// Open the location selection dialog
+document.querySelector('#select-location-btn').addEventListener('click', (event) => {
+    const closeDialog = openShadowBackground(event, '#select-location');
+
+    const selectLocation = document.querySelector('#select-location');
+    selectLocation.style.display = 'block';
+
+    const closeBtn = selectLocation.querySelector('.close-btn');
+
+    const scrollArrowHandlerUp = handleScrollArrow(scrollInterval, slideContent, nextToggleUp, 3, 6);
+    const scrollArrowHandlerDown = handleScrollArrow(scrollInterval, slideContent, nextToggleDown, -3, -6);
+
+    closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // The returned function from openShadowBackground
+        closeDialog();
+        scrollArrowHandlerUp.removeEventListeners();
+        scrollArrowHandlerDown.removeEventListeners();
+    });
+});
 
 // Click location options to add location information into the post
 const locationBtns = slideContent.querySelectorAll('.location-btn');
@@ -78,7 +80,7 @@ const locationBtns = slideContent.querySelectorAll('.location-btn');
 const adjustMoodTagPosition = () => {
     const moodTag = document.querySelector('.mood-tag');
     if (moodTag) {
-        moodTag.style.marginLeft = '8px'; // 设置 mood tag 的左侧边距为默认值
+        moodTag.style.marginLeft = '8px';
     }
 };
 
@@ -151,12 +153,9 @@ document.addEventListener('click', (event) => {
 // Clicking the .select-mood-btn element element can control whether the bar is open or not
 selectMoodBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    const moodBarStyle = window.getComputedStyle(moodBar);
-    if (moodBarStyle.display === 'none') {
-        moodBar.style.display = 'flex';
-    } else {
-        moodBar.style.display = 'none';
-    }
+
+    const newStyles = toggleVisibility(moodBar, 'flex');
+    Object.assign(moodBar.style, newStyles);
 });
 
 // Choose one, and the others will be minimized to the side
@@ -236,8 +235,9 @@ posts.forEach((post) => {
     const moreBtn = post.querySelector('.more-btn');
     const moreBar = post.querySelector('.more-bar');
 
-    moreBtn.addEventListener('click', (event) => {
-        toggleVisibility(moreBar, 'flex')(event);
+    moreBtn.addEventListener('click', () => {
+        const newStyles = toggleVisibility(moreBar, 'flex');
+        Object.assign(moreBar.style, newStyles);
     });
 
     // Click anywhere except the moreBtn and moreBar will close it
@@ -267,23 +267,34 @@ posts.forEach((post) => {
     // Clicking the like button
     const likeBtn = post.querySelector('.like-btn');
     const likeIcon = likeBtn.querySelector('.like-icon');
-    likeBtn.addEventListener('click', (event) => {
-        colorizeIconWithAnimation(likeIcon, '#f87171', '.like-icon')(event);
+    likeBtn.addEventListener('click', () => {
+        const { style, classes, removeClasses } = colorizeIconWithAnimation(likeIcon, '#f87171');
+        Object.assign(likeIcon.style, style);
+        classes.forEach((cls) => likeIcon.classList.add(cls));
+        removeClasses.forEach((cls) => likeIcon.classList.remove(cls));
     });
 
     // Clicking the comment button
     const commentBtn = post.querySelector('.comment-btn');
     const commentIcon = commentBtn.querySelector('.comment-icon');
-    commentBtn.addEventListener('click', (event) => {
+    commentBtn.addEventListener('click', () => {
+        const { style, classes, removeClasses } = colorizeIconWithAnimation(commentIcon, '#fde68a');
+        Object.assign(commentIcon.style, style);
+        classes.forEach((cls) => commentIcon.classList.add(cls));
+        removeClasses.forEach((cls) => commentIcon.classList.remove(cls));
+
         const commentContainer = post.querySelector('.comment-container');
-        colorizeIconWithAnimation(commentIcon, '#fde68a', '.comment-icon')(event);
-        toggleVisibility(commentContainer, 'block')(event);
+        const newStyles = toggleVisibility(commentContainer, 'block');
+        Object.assign(commentContainer.style, newStyles);
     });
 
     // Clicking the share button
     const shareBtn = post.querySelector('.share-btn');
     const shareIcon = shareBtn.querySelector('.share-icon');
-    shareBtn.addEventListener('click', (event) => {
-        colorizeIconWithAnimation(shareIcon, '#7dd3fc', '.share-icon')(event);
+    shareBtn.addEventListener('click', () => {
+        const { style, classes, removeClasses } = colorizeIconWithAnimation(shareIcon, '#7dd3fc');
+        Object.assign(shareIcon.style, style);
+        classes.forEach((cls) => shareIcon.classList.add(cls));
+        removeClasses.forEach((cls) => shareIcon.classList.remove(cls));
     });
 });

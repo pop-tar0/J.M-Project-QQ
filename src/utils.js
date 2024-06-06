@@ -1,17 +1,9 @@
-export const toggleVisibility = (initialElement, display) => {
-    const element = initialElement;
+// The function to exchange the display of the element
+export const toggleVisibility = (element, display) => {
     const elementStyle = window.getComputedStyle(element);
-    if (elementStyle.display === 'none') {
-        element.style.display = display;
-    } else {
-        element.style.display = 'none';
-    }
+    const newDisplay = elementStyle.display === 'none' ? display : 'none';
     return {
-        ...initialElement,
-        style: {
-            ...initialElement.style,
-            display: elementStyle.display === 'none' ? display : 'none',
-        },
+        display: newDisplay,
     };
 };
 

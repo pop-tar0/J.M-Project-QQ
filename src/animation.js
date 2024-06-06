@@ -1,25 +1,21 @@
-export const colorizeIconWithAnimation = (likeIcon, color, element) => (event) => {
-    const effectIcon = event.currentTarget.querySelector(element);
-    const IconStyle = window.getComputedStyle(likeIcon);
-    const currentColor = IconStyle.color;
+export const colorizeIconWithAnimation = (icon, color) => {
+    const iconStyle = window.getComputedStyle(icon);
+    const currentColor = iconStyle.color;
 
-    effectIcon.classList.add('color-transition');
+    const newStyle = {
+        color: currentColor === 'rgb(255, 255, 255)' ? color : 'white',
+        transition: 'color 0.3s',
+    };
 
+    const newClasses = ['color-transition'];
     if (currentColor === 'rgb(255, 255, 255)') {
-        effectIcon.style.color = color;
-        effectIcon.classList.remove('bounce');
-        effectIcon.classList.add('bounce');
-    } else {
-        effectIcon.style.color = 'white';
-        effectIcon.classList.remove('bounce');
-        effectIcon.classList.remove('color-transition');
+        newClasses.push('bounce');
     }
 
     return {
-        style: {
-            ...IconStyle,
-            color: currentColor === 'rgb(255, 255, 255)' ? color : 'white',
-        },
+        style: newStyle,
+        classes: newClasses,
+        removeClasses: currentColor !== 'rgb(255, 255, 255)' ? ['bounce', 'color-transition'] : [],
     };
 };
 
