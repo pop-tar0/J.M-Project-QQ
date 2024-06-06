@@ -11,6 +11,7 @@
   },
   "rules": {
     "linebreak-style": 0,
-    "indent": ["error", 4] // 將縮進設定為四個空格
+    "indent": ["error", 4], // 將縮進設定為四個空格
+    "max-len": "off"
   }
 }
