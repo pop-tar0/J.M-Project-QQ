@@ -128,6 +128,18 @@
         };
     };
 
+    // The function to change minute to other type
+    const timeFormatter = (minute) => {
+        if (minute > 0 && minute < 60) {
+            return `${minute}m`;
+        }
+        if (minute > 60) {
+            const hours = Math.floor(minute / 60);
+            return `${hours}h`;
+        }
+        return 'Invalid time';
+    };
+
     // Select Image
     // Opens the file selection dialog when the user clicks the select image button
     document.querySelector('#select-image-btn').addEventListener('click', (event) => {
@@ -352,121 +364,120 @@
         });
     });
 
-    // Generate post
+    // Put the post information into an array for easier management
     const postInfo = [
         {
             photoUrl: 'assets/img/poster1-photo.png',
             name: 'pop.dokyun_el',
-            time: '15',
+            time: 15,
             textContent: 'super idol的笑容<br>都沒印何闐',
             imageUrl: 'assets/img/post-img1.png',
-            likeQuantity: '300',
+            likeQuantity: 300,
         },
         {
             photoUrl: 'assets/img/poster2-photo.png',
             name: 'patrick',
-            time: '20',
+            time: 20,
             textContent: '我平常就是這樣呆頭呆腦才會沒煩惱啊',
             imageUrl: 'assets/img/post-img2.png',
-            likeQuantity: '5790',
+            likeQuantity: 5790,
         },
         {
             photoUrl: 'assets/img/poster3-photo.png',
-            name: 'patrick',
-            time: '90',
+            name: 'piyan',
+            time: 90,
             textContent: '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
             imageUrl: 'assets/img/post-img3.png',
-            likeQuantity: '999',
+            likeQuantity: 999,
         },
     ];
 
-    // Put the post information into an array for easier management
-    const generatePost = () => {
-        const postBlock = document.querySelector('.post-block');
-
-        postInfo.forEach((post) => {
-            const postHTML = `
-        <div class="container post bg-gray-100 h-auto mx-auto mt-2 mb-2 rounded-lg">
-            <div class="row flex">
-                <div class="poster-information flex flex-col h-auto">
-                    <a href="javascript:;" class="poster-photo w-7/12 mt-2 mb-0 mx-auto btn-hover">
-                        <img src="${post.photoUrl}" class="w-full h-full rounded-lg object-cover" alt="Error圖片錯誤">
-                    </a>
-                    <a href="javascript:;" class="poster-name text-center text-white mt-2 mb-0 mx-auto bg-gray-300 h-5 leading-5 font-bold btn-hover w-7/12 overflow-hidden rounded-lg hover:underline text-2xs">@${post.name}</a>
-                </div>
-                <div class="post-content-panel rounded-lg">
-                    <div class="post-content bg-white h-auto relative mt-2 mb-2 ml-0 mr-0 pt-3 pb-2 px-4 rounded-lg">
-                        <div class="post-time-container flex absolute text-sm items-center">
-                            <i class="fas fa-clock text-gray-300 mr-2"></i>
-                            <div class="post-time text-gray-300">${post.time}</div>
-                        </div>
-
-                        <!--More Button-->
-                        <div class="more-container flex flex-col absolute w-40 h-40 items-center">
-                            <button class="more-btn h-10 w-10 rounded-full hover:bg-gray-100">
-                                <i class="fas fa-ellipsis-h text-gray-300 text-lg mx-auto"></i>
-                            </button>
-                            <div class="more-bar flex-col w-full items-center mt-2" hidden>
-                                <div class="more-bar-head h-4 w-4 bg-gray-200 transform rotate-45"></div>
-                                <div class="more-bar-body h-auto w-full bg-gray-200 rounded-lg z-10 py-1">
-                                    <ul class="flex flex-col">
-                                        <li>
-                                            <button class="hide-btn flex bg-white hover:bg-gray-100 h-8 w-11/12 my-1 mx-auto rounded-md">
-                                                <i class="fas fa-times h-8 w-8 mt-2 ml-1"></i>
-                                                <div class="h-8 leading-8">隱藏</div>
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="flex bg-white hover:bg-gray-100 h-8 w-11/12 my-1 mx-auto rounded-md">
-                                                <i class="fas fa-exclamation-triangle h-8 w-8 mt-2 ml-1"></i>
-                                                <div class="h-8 leading-8">檢舉</div>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>                         
-                        <p class="main-text break-words mb-2">${post.textContent}</p>
-                        <img src="${post.imageUrl}" class="border-0 w-full" alt="Error圖片錯誤">
-                        <div class="feedback-panel flex justify-between mt-2 w-full">
-                            <div class="flex mt-1">
-                                <i class="likes-icon fas fa-heart w-5 pt-1 text-navy-blue"></i>
-                                <a href="javascript:;" class="likes-quantity detail tracking-wide text-black hover:underline">${post.likeQuantity}</a>
-                            </div>
-                            <div class="interaction-bar flex justify-between w-2/5">
-                            
-                                <!--Like button-->
-                                <button class="like-btn bg-gray-300 text-white w-20 h-8 rounded-lg hover:opacity-80">
-                                    <i class="fas fa-heart like-icon"></i>
-                                </button>
-
-                                <!--Comment button-->
-                                <button class="comment-btn bg-gray-300 text-white w-20 h-8 rounded-lg hover:opacity-80">
-                                    <i class="fas fa-comment comment-icon"></i>                    
-                                </button>
-
-                                <!-- Share button -->
-                                <button class="share-btn bg-gray-300 text-white w-20 h-8 rounded-lg hover:opacity-80">
-                                    <i class="fas fa-share-alt share-icon"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <form class="comment-container h-auto" hidden>
-                            <textarea class="comment-textarea w-full pl-3 mt-2 rounded-lg bg-gray-100 h-auto"></textarea>
-                            <button class="add-comment-btn absolute bg-navy-blue text-white h-8 rounded-lg hover:opacity-80" type="submit">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </form>
+    // Generate post
+    const generatePostHTML = (post) => `
+    <div class="container post bg-gray-100 h-auto mx-auto mt-2 mb-2 rounded-lg">
+        <div class="row flex">
+            <div class="poster-information flex flex-col h-auto">
+                <a href="javascript:;" class="poster-photo w-7/12 mt-2 mb-0 mx-auto btn-hover">
+                    <img src="${post.photoUrl}" class="w-full h-full rounded-lg object-cover" alt="Error圖片錯誤">
+                </a>
+                <a href="javascript:;" class="poster-name text-center text-white mt-2 mb-0 mx-auto bg-gray-300 h-5 leading-5 font-bold btn-hover w-7/12 overflow-hidden rounded-lg hover:underline text-2xs">@${post.name}</a>
+            </div>
+            <div class="post-content-panel rounded-lg">
+                <div class="post-content bg-white h-auto relative mt-2 mb-2 ml-0 mr-0 pt-3 pb-2 px-4 rounded-lg">
+                    <div class="post-time-container flex absolute text-sm items-center">
+                        <i class="fas fa-clock text-gray-300 mr-2"></i>
+                        <div class="post-time text-gray-300">${timeFormatter(post.time)}</div>
                     </div>
+
+                    <!--More Button-->
+                    <div class="more-container flex flex-col absolute w-40 h-40 items-center">
+                        <button class="more-btn h-10 w-10 rounded-full hover:bg-gray-100">
+                            <i class="fas fa-ellipsis-h text-gray-300 text-lg mx-auto"></i>
+                        </button>
+                        <div class="more-bar flex-col w-full items-center mt-2" hidden>
+                            <div class="more-bar-head h-4 w-4 bg-gray-200 transform rotate-45"></div>
+                            <div class="more-bar-body h-auto w-full bg-gray-200 rounded-lg z-10 py-1">
+                                <ul class="flex flex-col">
+                                    <li>
+                                        <button class="hide-btn flex bg-white hover:bg-gray-100 h-8 w-11/12 my-1 mx-auto rounded-md">
+                                            <i class="fas fa-times h-8 w-8 mt-2 ml-1"></i>
+                                            <div class="h-8 leading-8">隱藏</div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="flex bg-white hover:bg-gray-100 h-8 w-11/12 my-1 mx-auto rounded-md">
+                                            <i class="fas fa-exclamation-triangle h-8 w-8 mt-2 ml-1"></i>
+                                            <div class="h-8 leading-8">檢舉</div>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                         
+                    <p class="main-text break-words mb-2">${post.textContent}</p>
+                    <img src="${post.imageUrl}" class="border-0 w-full" alt="Error圖片錯誤">
+                    <div class="feedback-panel flex justify-between mt-2 w-full">
+                        <div class="flex mt-1">
+                            <i class="likes-icon fas fa-heart w-5 pt-1 text-navy-blue"></i>
+                            <a href="javascript:;" class="likes-quantity detail tracking-wide text-black hover:underline">${post.likeQuantity}</a>
+                        </div>
+                        <div class="interaction-bar flex justify-between w-2/5">
+                        
+                            <!--Like button-->
+                            <button class="like-btn bg-gray-300 text-white w-20 h-8 rounded-lg hover:opacity-80">
+                                <i class="fas fa-heart like-icon"></i>
+                            </button>
+
+                            <!--Comment button-->
+                            <button class="comment-btn bg-gray-300 text-white w-20 h-8 rounded-lg hover:opacity-80">
+                                <i class="fas fa-comment comment-icon"></i>                    
+                            </button>
+
+                            <!-- Share button -->
+                            <button class="share-btn bg-gray-300 text-white w-20 h-8 rounded-lg hover:opacity-80">
+                                <i class="fas fa-share-alt share-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <form class="comment-container h-auto" hidden>
+                        <textarea class="comment-textarea w-full pl-3 mt-2 rounded-lg bg-gray-100 h-auto"></textarea>
+                        <button class="add-comment-btn absolute bg-navy-blue text-white h-8 rounded-lg hover:opacity-80" type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
-        </div>`;
+        </div>
+    </div>
+`;
 
-            postBlock.innerHTML += postHTML;
-        });
+    // Render post
+    const renderPost = (posts) => {
+        const postBlock = document.querySelector('.post-block');
+        postBlock.innerHTML = posts.map(generatePostHTML).join('');
     };
 
-    generatePost();
+    document.addEventListener('DOMContentLoaded', renderPost(postInfo));
 
     // Post feature
     const posts = document.querySelectorAll('.post');

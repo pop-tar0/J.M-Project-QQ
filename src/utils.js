@@ -7,4 +7,16 @@ export const toggleVisibility = (element, display) => {
     };
 };
 
+// The function to change minute to other type
+export const timeFormatter = (minute) => {
+    if (minute > 0 && minute < 60) {
+        return `${minute}m`;
+    }
+    if (minute > 60) {
+        const hours = Math.floor(minute / 60);
+        return `${hours}h`;
+    }
+    return 'Invalid time';
+};
+
 export default {};
