@@ -54,6 +54,18 @@ article .post-panel .row .post-action-column {
     width: calc(100%/6);
 }
 
+article .post-panel .row .post-action-column .profile-image {
+    max-width: 88px;
+}
+
+article .post-panel .row .post-action-column .action-block {
+    width: 60%;
+    max-width: 88px;
+    top: 96px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 article .post-panel .row .btn-bar {
     height: 120px;
 }
@@ -74,6 +86,7 @@ article .post-panel .row .post-container {
 article .post-panel .row .post-container textarea {
     width: calc(100% - 40px);
     height: 209px;
+    max-height: 209px;
 }
 article .post-panel .row .post-container .location-tag {
     top: 187px;
